@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
-Debug|x64|C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\|
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
+Debug|x64|D:\Dev\ESG_Maths\S2\QuatermignonGL\|
