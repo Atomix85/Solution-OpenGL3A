@@ -22,7 +22,7 @@ public:
 	~Quaternion();
 
 	// -- OVERLOADED OPERATORS --
-	bool operator==(Quaternion const&);
+	/*bool operator==(Quaternion const&);
 
 	Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
@@ -36,13 +36,14 @@ public:
 
 	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
 	friend std::istream& operator>>(std::istream&, Quaternion &);
-
+	*/
 
 	// -- OTHERS --
 	const GLfloat a();
 	const GLfloat b();
 	const GLfloat c();
 	const GLfloat d();
+
 
 };
 

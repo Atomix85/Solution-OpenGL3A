@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="premiertriangle.c" />
+    <ClCompile Include="Quaternion.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

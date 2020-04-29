@@ -1,6 +1,6 @@
 // PremierTriangle.c : définit le point d'entrée pour l'application console.
 //
-
+/*
 #include "common.h"
 void Reshape(int x, int y);
 
@@ -25,4 +25,4 @@ int main(int argc, char* argv[])
 	Shutdown();
 
 	return 0;
-}
+}*/
