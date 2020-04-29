@@ -31,5 +31,6 @@ extern void Update(void);
 extern void Render(void);
 extern void Initialize(void);
 extern void Shutdown(void);
+extern void Reshape(int x, int y);
 
 #endif // OPENGL_INITIATION_COMMON_H

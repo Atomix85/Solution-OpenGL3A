@@ -2,14 +2,13 @@
 //
 
 #include "common.h"
+void Reshape(int x, int y);
 
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
-
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowSize(1024, 768);
-	glutCreateWindow("Premier triangle");
+	glutInitWindowSize(350, 350);
+	glutCreateWindow("Rotating Cube #Fee9fc");
 	
 #if defined(FREEGLUT)
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
@@ -17,6 +16,7 @@ int main(int argc, char* argv[])
 
 	glutIdleFunc(Update);
 	glutDisplayFunc(Render);
+	glutReshapeFunc(Reshape);
 
 	Initialize();
 
