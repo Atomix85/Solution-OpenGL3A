@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (PremierTriangle.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  main.c
+  premiertriangle.c
+  Génération de code en cours...
+  QuatermignonGL.vcxproj -> D:\Dev\ESG_Maths\S2\QuatermignonGL\x64\Debug\QuatermignonGL.exe
