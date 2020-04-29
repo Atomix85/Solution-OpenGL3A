@@ -4,18 +4,18 @@ Quaternion::Quaternion(double a, double b, double c, double d)
 	: _a(a), _b(b), _c(c), _d(d)
 {
 }
-Quaternion operator+(const Quaternion& first,const Quaternion& second)
+Quaternion Quaternion::operator+(const Quaternion& other)
 {
-	return Quaternion(first._a + second._a,
-		first._b + second._b,
-		first._c + second._c,
-		first._d + second._d);
+	return Quaternion(other._a + this->_a,
+		other._b + this->_b,
+		other._c + this->_c,
+		other._d + this->_d);
 }
 
-bool operator==(Quaternion const& first, Quaternion const& second)
+bool Quaternion::operator==(Quaternion const& other)
 {
-	return first._a == second._a && first._b == second._b
-		&& first._c == second._c && first._d == second._d;
+	return other._a == this->_a && other._b == this->_b
+		&& other._c == this->_c && other._d == this->_d;
 }
 
 const double Quaternion::getA() {
