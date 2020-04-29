@@ -9,6 +9,7 @@ class Quaternion
 private:
 	GLfloat _angle;
 	GLfloat*_axis;
+
 public:
 	// -- CONSTRUCTORS & DESTRUCTORS --
 	// empty constructor
@@ -43,7 +44,6 @@ public:
 	const GLfloat c();
 	const GLfloat d();
 
-	friend glm::mat4  Matrix();
 };
 
 #endif
