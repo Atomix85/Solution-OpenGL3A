@@ -1,12 +1,34 @@
 #pragma once
+#include "common.h"
+
 class Quaternion
 {
 private:
-	double _a, _b, _c, _d;
+	GLfloat _angle;
+	GLfloat*_axis;
 public:
-	Quaternion(double a, double b, double c, double d);
-	Quaternion operator+(Quaternion const& other);
+	// -- CONSTRUCTORS & DESTRUCTORS --
+	// empty constructor
+	Quaternion();
+	// constructor with parameters
+	Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d);
+	// deep copy constructor
+	Quaternion(Quaternion const& copy);
+	// destructor
+	~Quaternion();
+
+	// -- OVERLOADED OPERATORS --
 	bool operator==(Quaternion const& other);
+	Quaternion operator+(Quaternion const& other);
+	Quaternion operator-(Quaternion const& other);
+	Quaternion operator*(Quaternion const& other);
+	Quaternion operator/(Quaternion const& other);
+	Quaternion operator+=(Quaternion const& other);
+	Quaternion operator-=(Quaternion const& other);
+	Quaternion operator*=(Quaternion const& other);
+	Quaternion operator/=(Quaternion const& other);
+
+	// -- OTHERS --
 	const double getA();
 	const double getB();
 	const double getC();
