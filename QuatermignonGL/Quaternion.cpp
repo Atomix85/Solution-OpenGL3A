@@ -1,36 +1,39 @@
 #include "Quaternion.h"
 
-Quaternion::Quaternion(double a, double b, double c, double d)
-	: _a(a), _b(b), _c(c), _d(d)
+Quaternion::Quaternion()
 {
-}
-Quaternion Quaternion::operator+(const Quaternion& other)
-{
-	return Quaternion(other._a + this->_a,
-		other._b + this->_b,
-		other._c + this->_c,
-		other._d + this->_d);
+	_angle = 0.0;
+	_axis = (GLfloat*) calloc(3,sizeof(GLfloat));
+	if (!_axis) throw ("Unable to allocate memory");
 }
 
-bool Quaternion::operator==(Quaternion const& other)
+Quaternion::Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 {
-	return other._a == this->_a && other._b == this->_b
-		&& other._c == this->_c && other._d == this->_d;
+	_angle = a;
+	_axis = (GLfloat*) malloc(3*sizeof(GLfloat));
+	if (!_axis) throw ("Unable to allocate memory");
+	else {
+		_axis[0] = b;
+		_axis[1] = c;
+		_axis[2] = d;
+	}
 }
 
-const double Quaternion::getA() {
-	return _a;
-}
-const double Quaternion::getB() {
-	return _b;
-}
-const double Quaternion::getC() {
-	return _c;
-}
-const double Quaternion::getD() {
-	return _d;
+Quaternion::Quaternion(Quaternion const& q)
+{
+	_angle = q.a;
+	_axis = (GLfloat*)malloc(3 * sizeof(GLfloat));
+	if (!_axis) throw ("Unable to allocate memory");
+	else {
+		_axis[0] = q.b;
+		_axis[1] = q.c;
+		_axis[2] = q.d;
+	}
+
+
 }
 
 Quaternion::~Quaternion()
 {
+	delete[] _axis;
 }
