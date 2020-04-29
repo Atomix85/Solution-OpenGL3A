@@ -55,7 +55,7 @@ const GLfloat Quaternion::d()
 {
 	return _axis[2];
 }
-
+/*
 int main() {
 	printf("\n======== TEST QUATERNION ========\n\n");
 	printf("\n-- empty constructor\n\n");
@@ -70,11 +70,11 @@ int main() {
 	printf("b: %f\n", q1.b());
 	printf("c : %f\n", q1.c());
 	printf("d : %f\n", q1.d());
-/*	printf("-- copy constructor");
+	printf("-- copy constructor");
 	Quaternion q2(q1);
 	printf("a : %f", q.a());
 	printf("b: %f", q.b());
 	printf("c : %f", q.c());
-	printf("d : %f", q.d());*/
+	printf("d : %f", q.d());
 	return 0;
-}
+}*/
