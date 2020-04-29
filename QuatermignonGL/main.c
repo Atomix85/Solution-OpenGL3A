@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitWindowSize(350, 350);
-	glutCreateWindow("Rotating Cube");
+	glutCreateWindow("Rotating Cube #Fee9fc");
 	
 #if defined(FREEGLUT)
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);

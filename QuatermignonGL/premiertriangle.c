@@ -1,18 +1,14 @@
 #include "common.h"
 
-/*
-move in another file with all primary shape after..
-*/
-
-
-GLfloat xRotated, yRotated, zRotated;
+GLfloat xAngle, yAngle, zAngle;
 GLdouble size = 1.5;
+const GLint zoom = -8;
 
 void Initialize(void)
 {
-    xRotated = yRotated = zRotated = 30.0;
-    xRotated = 43;
-    yRotated = 50;
+    xAngle = yAngle = zAngle = 30.0;
+    xAngle = 43;
+    yAngle = 50;
 }
 
 void Shutdown(void)
@@ -22,9 +18,9 @@ void Shutdown(void)
 
 void Update(void)
 {
-    xRotated += 0.01;
-    yRotated += 0.01;
-    zRotated += 0.01;
+    xAngle += 0.01;
+    yAngle += 0.01;
+    zAngle += 0.01;
     Render();
 }
 
@@ -35,28 +31,25 @@ void Render(void)
     glClear(GL_COLOR_BUFFER_BIT);
     // clear the identity matrix.
     glLoadIdentity();
-    // traslate the draw by z = -4.0
-    // Note this when you decrease z like -8.0 the drawing will looks far , or smaller.
-    glTranslatef(0.0, 0.0, -5.0);
-    // Red color used to draw.
-    glColor3f(0.9, 0.3, 0.2);
-    // changing in transformation matrix.
-    // rotation about X axis
-    glRotatef(xRotated, 1.0, 0.0, 0.0);
-    // rotation about Y axis
-    glRotatef(yRotated, 0.0, 1.0, 0.0);
-    // rotation about Z axis
-    glRotatef(zRotated, 0.0, 0.0, 1.0);
+    // translate the draw on z to zoom.
+    glTranslatef(0.0, 0.0, zoom);
+
+    // --- CUBE ---
+
+    // #Fee9fc color is the most beautifule pink in the world.
+    glColor3f(0.99,	0.87,0.97);
+
+    // Rotations perform on axis
+    glRotatef(xAngle, 1.0, 0.0, 0.0);
+    glRotatef(yAngle, 0.0, 1.0, 0.0);
+    glRotatef(zAngle, 0.0, 0.0, 1.0);
+
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
-    // built-in (glut library) function , draw you a sphere.
+    // draw a fucking cube.
     glutSolidCube(size);
-
     // Flush buffers to screen
-
     glFlush();
-    // sawp buffers called because we are using double buffering 
-   // glutSwapBuffers();
 
 }
 
