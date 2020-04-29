@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1586169892 source:c:\users\kubity\downloads\solution opengl3a\premiertriangle\main.c
+	"common.h"
+
+1586187240 c:\users\kubity\downloads\solution opengl3a\premiertriangle\common.h
+	<GL/glew.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1556042105 c:\users\kubity\downloads\solution opengl3a\libs\glew-2.1.0\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1426349728 c:\users\kubity\downloads\solution opengl3a\libs\freeglut-mingw\include\gl\glut.h
+	"freeglut_std.h"
+
+1426349728 c:\users\kubity\downloads\solution opengl3a\libs\freeglut-mingw\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426349728 c:\users\kubity\downloads\solution opengl3a\libs\freeglut-mingw\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1586188173 source:c:\users\kubity\downloads\solution opengl3a\premiertriangle\premiertriangle.c
+	"common.h"
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PremierTriangle" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PremierTriangle" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../libs/glew-2.1.0/include" />
+					<Add directory="../libs/freeglut-mingw/include" />
+				</Compiler>
+				<Linker>
+					<Add library="../libs/freeglut-mingw/lib/x64/libfreeglut.a" />
+					<Add library="../libs/glew-2.1.0/lib/Release/x64/libglew32.a" />
+					<Add library="opengl32" />
+					<Add directory="../libs/freeglut-mingw/lib/x64" />
+					<Add directory="../libs/glew-2.1.0/lib/Release/x64" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PremierTriangle" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../libs/glew-2.1.0/include" />
+					<Add directory="../libs/freeglut-mingw/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="../libs/glew-2.1.0/lib/Release/x64/libglew32.a" />
+					<Add library="../libs/freeglut-mingw/lib/x64/libfreeglut.a" />
+					<Add library="opengl32" />
+					<Add directory="../libs/freeglut-mingw/lib/x64" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="../libs/glew-2.1.0/include" />
+			<Add directory="../libs/freeglut-mingw/include" />
+		</Compiler>
+		<Linker>
+			<Add library="../libs/glew-2.1.0/lib/Release/x64/libglew32.a" />
+			<Add library="../libs/freeglut-mingw/lib/x64/libfreeglut.a" />
+			<Add library="opengl32" />
+			<Add directory="../libs/freeglut-mingw/lib/x64" />
+		</Linker>
+		<Unit filename="common.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="premiertriangle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
