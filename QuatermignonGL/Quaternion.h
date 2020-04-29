@@ -1,5 +1,8 @@
 #pragma once
+#ifndef __QUAT_H__
+#define __QUAT_H__
 #include "common.h"
+#include <iostream>
 
 class Quaternion
 {
@@ -18,21 +21,29 @@ public:
 	~Quaternion();
 
 	// -- OVERLOADED OPERATORS --
-	bool operator==(Quaternion const& other);
-	Quaternion operator+(Quaternion const& other);
-	Quaternion operator-(Quaternion const& other);
-	Quaternion operator*(Quaternion const& other);
-	Quaternion operator/(Quaternion const& other);
-	Quaternion operator+=(Quaternion const& other);
-	Quaternion operator-=(Quaternion const& other);
-	Quaternion operator*=(Quaternion const& other);
-	Quaternion operator/=(Quaternion const& other);
+	bool operator==(Quaternion const&);
+
+	Quaternion operator+(Quaternion const&);
+	Quaternion operator-(Quaternion const&);
+	Quaternion operator*(Quaternion const&);
+	Quaternion operator/(Quaternion const&);
+
+	Quaternion operator+=(Quaternion const&);
+	Quaternion operator-=(Quaternion const&);
+	Quaternion operator*=(Quaternion const&);
+	Quaternion operator/=(Quaternion const&);
+
+	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
+	friend std::istream& operator>>(std::istream&, Quaternion &);
+
 
 	// -- OTHERS --
-	const double getA();
-	const double getB();
-	const double getC();
-	const double getD();
-	~Quaternion();
+	const GLfloat a();
+	const GLfloat b();
+	const GLfloat c();
+	const GLfloat d();
+
+	friend glm::mat4  Matrix();
 };
 
+#endif

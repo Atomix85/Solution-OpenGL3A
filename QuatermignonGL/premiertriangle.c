@@ -16,6 +16,16 @@ void Shutdown(void)
 
 }
 
+void Reshape(int x, int y)
+{
+    if (y == 0 || x == 0) return;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(39.0, (GLdouble)x / (GLdouble)y, 0.6, 21.0);
+    glMatrixMode(GL_MODELVIEW);
+    glViewport(0, 0, x, y);  //Use the whole window for rendering
+}
+
 void Update(void)
 {
     xAngle += 0.01;
@@ -53,12 +63,3 @@ void Render(void)
 
 }
 
-void Reshape(int x, int y)
-{
-    if (y == 0 || x == 0) return;
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(39.0, (GLdouble)x / (GLdouble)y, 0.6, 21.0);
-    glMatrixMode(GL_MODELVIEW);
-    glViewport(0, 0, x, y);  //Use the whole window for rendering
-}
