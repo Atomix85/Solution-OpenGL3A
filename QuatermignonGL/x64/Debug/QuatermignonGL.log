@@ -1,9 +1,1 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (PremierTriangle.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  premiertriangle.c
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(25,21): warning C4305: '+=' : troncation de 'double' à 'GLfloat'
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(26,21): warning C4305: '+=' : troncation de 'double' à 'GLfloat'
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(27,21): warning C4305: '+=' : troncation de 'double' à 'GLfloat'
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(42,18): warning C4305: 'fonction' : troncation de 'double' à 'GLfloat'
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(42,23): warning C4305: 'fonction' : troncation de 'double' à 'GLfloat'
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\premiertriangle.c(42,28): warning C4305: 'fonction' : troncation de 'double' à 'GLfloat'
-  QuatermignonGL.vcxproj -> D:\Dev\ESG_Maths\S2\QuatermignonGL\x64\Debug\QuatermignonGL.exe
+﻿
