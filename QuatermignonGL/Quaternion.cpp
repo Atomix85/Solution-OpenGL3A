@@ -76,5 +76,11 @@ int main() {
 	printf("b: %f\n", q2.b());
 	printf("c : %f\n", q2.c());
 	printf("d : %f\n", q2.d());
+	printf("\n-- destructor\n\n");
+	Quaternion* q = new Quaternion();
+	delete q;
+	
+
+
 	return 0;
-}
+}	
