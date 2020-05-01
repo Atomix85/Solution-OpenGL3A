@@ -62,6 +62,24 @@ Quaternion Quaternion::operator-(Quaternion const& q)
 					  q.d() - this->d());
 }
 
+Quaternion Quaternion::operator+=(Quaternion const& q)
+{
+	this->_angle   += q.a();
+	this->_axis[0] += q.b();
+	this->_axis[1] += q.c();
+	this->_axis[2] += q.d();
+	return *this;
+}
+
+Quaternion Quaternion::operator-=(Quaternion const& q)
+{
+	this->_angle   -= q.a();
+	this->_axis[0] -= q.b();
+	this->_axis[1] -= q.c();
+	this->_axis[2] -= q.d();
+	return *this;
+}
+
 GLfloat Quaternion::a() const
 {
 	return _angle;
@@ -106,9 +124,11 @@ int main() {
 	cout << "q1+q2 = " << q1 + q2 << "\n";
 	cout << "q1-q2 = " << q1 - q2 << "\n";
 	cout << "q0-q2 = " << q0 - q2 << "\n";
-
-	
-
+	printf("\n-- operator += and -=\n\n");
+	q1 += q1;
+	cout << "after q1+=q1 we got q1 = " << q1 << "\n";
+	q1 -= q2;
+	cout << "after q1-=q2 we got q1 = " << q1 << "\n";
 
 	return 0;
 }

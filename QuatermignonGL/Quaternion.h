@@ -27,11 +27,11 @@ public:
 	Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
 	/*Quaternion operator*(Quaternion const&);
-	Quaternion operator/(Quaternion const&);
+	Quaternion operator/(Quaternion const&);*/
 
 	Quaternion operator+=(Quaternion const&);
 	Quaternion operator-=(Quaternion const&);
-	Quaternion operator*=(Quaternion const&);
+	/*Quaternion operator*=(Quaternion const&);
 	Quaternion operator/=(Quaternion const&);*/
 
 	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
