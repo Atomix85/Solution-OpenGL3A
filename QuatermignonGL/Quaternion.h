@@ -28,6 +28,7 @@ public:
 		  - != operator
 	*/
 	bool operator==(Quaternion const&);
+	bool operator!=(Quaternion const&);
 	Quaternion& operator=(const Quaternion&);
 
 

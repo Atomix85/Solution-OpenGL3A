@@ -46,6 +46,11 @@ bool Quaternion::operator==(Quaternion const& q)
 		   this->d() == q.d();
 }
 
+bool Quaternion::operator!=(Quaternion const&q)
+{
+	return !(*this==q);
+}
+
 Quaternion& Quaternion::operator=(const Quaternion& q)
 {
 	if (this == &q) return *this;
@@ -146,9 +151,11 @@ int main() {
 	delete q;
 	printf("The quaternion Q has been successfully freed.\n"
 		    "Look how the Q.a() value is making bullshit as it's expected now :  %d\n", q->a());
-	printf("\n-- operator==\n\n");
+	printf("\n-- operator== and !=\n\n");
 	printf("q1 == q2 ? : %s\n", q1 == q2 ? "true" : "false");
 	printf("q0 == q2 ? : %s\n", q0 == q2 ? "true" : "false");
+	printf("q1 != q2 ? : %s\n", q1 != q2 ? "true" : "false");
+	printf("q0 != q2 ? : %s\n", q0 != q2 ? "true" : "false");
 	printf("\n-- operator + and -\n\n");
 	cout << "q1+q2 = " << q1 + q2 << "\n";
 	cout << "q1-q2 = " << q1 - q2 << "\n";
