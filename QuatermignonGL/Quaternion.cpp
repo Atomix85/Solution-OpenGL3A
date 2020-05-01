@@ -1,5 +1,6 @@
 #include "Quaternion.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 Quaternion::Quaternion()
@@ -125,6 +126,18 @@ GLfloat Quaternion::c() const
 GLfloat Quaternion::d() const
 {
 	return _axis[2];
+}
+
+Quaternion Quaternion::conjugate()
+{
+	return Quaternion(this->a(), -this->b(), -this->c(), -this->d());
+}
+
+GLfloat Quaternion::norm()
+{
+	GLfloat sum = _angle * _angle;
+	for (int i = 0; i < 3; i++) { sum += _axis[i]; }
+	return sqrt(sum);
 }
 
 std::ostream& operator<<(std::ostream& os, Quaternion const& q)

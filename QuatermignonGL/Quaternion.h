@@ -25,7 +25,6 @@ public:
 	/*
 		TODO : 
 		  - scalar product
-		  - != operator
 	*/
 	bool operator==(Quaternion const&);
 	bool operator!=(Quaternion const&);
@@ -56,10 +55,11 @@ public:
 	/*
 		TODO:
 			-normalize
-			-conjugate
 			-matrix to quaternion
 			-quaternion to matrix
 	*/
+	Quaternion conjugate();
+	GLfloat norm();
 
 
 };
