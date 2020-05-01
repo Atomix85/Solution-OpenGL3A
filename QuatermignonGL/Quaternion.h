@@ -39,10 +39,10 @@ public:
 	*/
 
 	// -- OTHERS --
-	const GLfloat a();
-	const GLfloat b();
-	const GLfloat c();
-	const GLfloat d();
+	GLfloat a() const;
+	GLfloat b() const;
+	GLfloat c() const;
+	GLfloat d() const;
 
 
 };
