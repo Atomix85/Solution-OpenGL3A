@@ -140,6 +140,13 @@ GLfloat Quaternion::norm()
 	return sqrt(sum);
 }
 
+void Quaternion::normalize()
+{
+	GLfloat norm = this->norm();
+	_angle = _angle / norm;
+	for (int i = 0; i < 3; i++) { _axis[i] = _axis[i] / norm; }
+}
+
 std::ostream& operator<<(std::ostream& os, Quaternion const& q)
 {
 	os << "(" << q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";

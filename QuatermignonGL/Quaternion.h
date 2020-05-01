@@ -21,11 +21,6 @@ public:
 	// destructor
 	~Quaternion();
 
-	// -- OVERLOADED OPERATORS --
-	/*
-		TODO : 
-		  - scalar product
-	*/
 	bool operator==(Quaternion const&);
 	bool operator!=(Quaternion const&);
 	Quaternion& operator=(const Quaternion&);
@@ -42,8 +37,11 @@ public:
 	//Quaternion operator/=(Quaternion const&);
 
 	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
-	/*friend std::istream& operator>>(std::istream&, Quaternion &);
-	*/
+	//friend std::istream& operator>>(std::istream&, Quaternion &);
+	
+
+	//friend Quaternion operator* (GLfloat scalar, Quaternion const&);
+	//friend Quaternion operator*= (GLfloat scalar, Quaternion const&);
 
 	// -- GETTERS --
 	GLfloat a() const;
@@ -52,16 +50,12 @@ public:
 	GLfloat d() const;
 
 	// -- OTHER MATHS OPERATIONS --
-	/*
-		TODO:
-			-normalize
-			-matrix to quaternion
-			-quaternion to matrix
-	*/
+
 	Quaternion conjugate();
 	GLfloat norm();
-
-
+	void normalize();
+	//static Quaternion Matrix2Quaternion(Matrix const&) const;
+	//static Quaternion Quaternion2Matrix(Quaternion const&) const;
 };
 
 #endif
