@@ -46,6 +46,16 @@ bool Quaternion::operator==(Quaternion const& q)
 		   this->d() == q.d();
 }
 
+Quaternion& Quaternion::operator=(const Quaternion& q)
+{
+	if (this == &q) return *this;
+	this->_angle   = q.a();
+	this->_axis[0] = q.b();
+	this->_axis[1] = q.c();
+	this->_axis[2] = q.d();
+	return *this;
+}
+
 Quaternion Quaternion::operator+(Quaternion const& q)
 {
 	return Quaternion(q.a() + this->a(),
@@ -56,10 +66,10 @@ Quaternion Quaternion::operator+(Quaternion const& q)
 
 Quaternion Quaternion::operator-(Quaternion const& q)
 {
-	return Quaternion(q.a() - this->a(),
-					  q.b() - this->b(),
-					  q.c() - this->c(),
-					  q.d() - this->d());
+	return Quaternion(this->a() - q.a(),
+		              this->b() - q.b(),
+					  this->c() - q.c(),
+		              this->d() - q.d());
 }
 
 Quaternion Quaternion::operator*(Quaternion const& q)
@@ -73,19 +83,20 @@ Quaternion Quaternion::operator*(Quaternion const& q)
 
 Quaternion Quaternion::operator+=(Quaternion const& q)
 {
-	this->_angle   += q.a();
-	this->_axis[0] += q.b();
-	this->_axis[1] += q.c();
-	this->_axis[2] += q.d();
+	*this = *this + q;
 	return *this;
 }
 
 Quaternion Quaternion::operator-=(Quaternion const& q)
 {
-	this->_angle   -= q.a();
-	this->_axis[0] -= q.b();
-	this->_axis[1] -= q.c();
-	this->_axis[2] -= q.d();
+	
+	*this = *this - q;
+	return *this;
+}
+
+Quaternion Quaternion::operator*=(Quaternion const& q)
+{
+	*this = *this * q;
 	return *this;
 }
 
