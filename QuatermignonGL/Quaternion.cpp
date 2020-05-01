@@ -1,4 +1,6 @@
 #include "Quaternion.h"
+#include <iostream>
+using namespace std;
 
 Quaternion::Quaternion()
 {
@@ -34,6 +36,14 @@ Quaternion::Quaternion(Quaternion const& q)
 Quaternion::~Quaternion()
 {
 	delete[] _axis;
+}
+
+bool Quaternion::operator==(Quaternion const& q)
+{
+	return this->a() == q.a() &&
+		   this->b() == q.b() &&
+		   this->c() == q.c() &&
+		   this->d() == q.d();
 }
 
 GLfloat Quaternion::a() const
@@ -77,10 +87,24 @@ int main() {
 	printf("c : %f\n", q2.c());
 	printf("d : %f\n", q2.d());
 	printf("\n-- destructor\n\n");
-	Quaternion* q = new Quaternion();
+	Quaternion* q = new Quaternion(15,0,1,0);
+	cout << "A dynamically allocated quaternion : \n Q = " << *q << "\n";
 	delete q;
+	printf("The quaternion Q has been successfully freed.\n"
+		    "See the a value is making bullshit as it's expected now :  %d\n", q->a());
+	printf("\n-- operator==\n\n");
+	printf("q1 == q2 ? : %s\n", q1 == q2 ? "true" : "false");
+	printf("q0 == q2 ? : %s\n", q0 == q2 ? "true" : "false");
+
 	
 
 
 	return 0;
-}	
+}
+
+std::ostream& operator<<(std::ostream& os, Quaternion const& q)
+{
+	os <<"("<< q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
+	os << endl;
+	return os;
+}

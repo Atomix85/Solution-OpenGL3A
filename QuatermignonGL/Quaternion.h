@@ -22,9 +22,9 @@ public:
 	~Quaternion();
 
 	// -- OVERLOADED OPERATORS --
-	/*bool operator==(Quaternion const&);
+	bool operator==(Quaternion const&);
 
-	Quaternion operator+(Quaternion const&);
+	/*Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
 	Quaternion operator*(Quaternion const&);
 	Quaternion operator/(Quaternion const&);
@@ -32,10 +32,10 @@ public:
 	Quaternion operator+=(Quaternion const&);
 	Quaternion operator-=(Quaternion const&);
 	Quaternion operator*=(Quaternion const&);
-	Quaternion operator/=(Quaternion const&);
+	Quaternion operator/=(Quaternion const&);*/
 
 	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
-	friend std::istream& operator>>(std::istream&, Quaternion &);
+	/*friend std::istream& operator>>(std::istream&, Quaternion &);
 	*/
 
 	// -- OTHERS --
