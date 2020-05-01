@@ -22,6 +22,11 @@ public:
 	~Quaternion();
 
 	// -- OVERLOADED OPERATORS --
+	/*
+		TODO : 
+		  - scalar product
+		  - != operator
+	*/
 	bool operator==(Quaternion const&);
 	Quaternion& operator=(const Quaternion&);
 
@@ -40,11 +45,20 @@ public:
 	/*friend std::istream& operator>>(std::istream&, Quaternion &);
 	*/
 
-	// -- OTHERS --
+	// -- GETTERS --
 	GLfloat a() const;
 	GLfloat b() const;
 	GLfloat c() const;
 	GLfloat d() const;
+
+	// -- OTHER MATHS OPERATIONS --
+	/*
+		TODO:
+			-normalize
+			-conjugate
+			-matrix to quaternion
+			-quaternion to matrix
+	*/
 
 
 };

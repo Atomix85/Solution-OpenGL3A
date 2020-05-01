@@ -81,6 +81,8 @@ Quaternion Quaternion::operator*(Quaternion const& q)
 				      );
 }
 
+
+
 Quaternion Quaternion::operator+=(Quaternion const& q)
 {
 	*this = *this + q;
@@ -160,13 +162,13 @@ int main() {
 	Quaternion q3(0,1,0,0);
 	Quaternion q4(0,0,1,0);
 	Quaternion e(1,0,0,0);
-	cout << "q3 = " << q3 << "q4 =" << q4 <<"\n neutral element : e ="<< e <<"\n absorbent element o = " << q0 <<"\n";
+	cout << "q3 = " << q3 << "q4 = " << q4 <<"\n neutral element : e ="<< e <<"\n absorbent element o = " << q0 <<"\n";
 	cout << "q3*q4 = " << q3 * q4 << "\n";
 	cout << "q4*q3 = " << q4 * q3 << "\n";
-	cout << "q4*e = " << q4 * e << "\n";
-	cout << "e*q4 = " << e * q4 << "\n";
-	cout << "o*q4 = " << q0 * q4 << "\n";
-	cout << "q4*o = " << q4 * q0 << "\n";
+	cout << "q4*e = " <<  q4 * e << "\n";
+	cout << "e*q4 = " <<  e  * q4 << "\n";
+	cout << "o*q4 = " <<  q0 * q4 << "\n";
+	cout << "q4*o = " <<  q4 * q0 << "\n";
 
 	return 0;
 }
