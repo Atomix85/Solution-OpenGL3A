@@ -19,9 +19,9 @@ Quaternion::Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 	}
 }
 
-/*Quaternion::Quaternion(Quaternion const& q)
+Quaternion::Quaternion(Quaternion const& q)
 {
-	_angle = q.a;
+	_angle = q.a();
 	_axis = (GLfloat*)malloc(3 * sizeof(GLfloat));
 	if (!_axis) throw ("Unable to allocate memory");
 	else {
@@ -29,33 +29,33 @@ Quaternion::Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 		_axis[1] = q.c();
 		_axis[2] = q.d();
 	}
-}*/
+}
 
 Quaternion::~Quaternion()
 {
 	delete[] _axis;
 }
 
-const GLfloat Quaternion::a()
+GLfloat Quaternion::a() const
 {
 	return _angle;
 }
 
-const GLfloat Quaternion::b()
+GLfloat Quaternion::b() const
 {
 	return _axis[0];
 }
 
-const GLfloat Quaternion::c()
+GLfloat Quaternion::c() const
 {
 	return _axis[1];
 }
 
-const GLfloat Quaternion::d()
+GLfloat Quaternion::d() const
 {
 	return _axis[2];
 }
-/*
+
 int main() {
 	printf("\n======== TEST QUATERNION ========\n\n");
 	printf("\n-- empty constructor\n\n");
@@ -70,11 +70,17 @@ int main() {
 	printf("b: %f\n", q1.b());
 	printf("c : %f\n", q1.c());
 	printf("d : %f\n", q1.d());
-	printf("-- copy constructor");
+	printf("\n-- copy constructor\n\n");
 	Quaternion q2(q1);
-	printf("a : %f", q.a());
-	printf("b: %f", q.b());
-	printf("c : %f", q.c());
-	printf("d : %f", q.d());
+	printf("a : %f\n", q2.a());
+	printf("b: %f\n", q2.b());
+	printf("c : %f\n", q2.c());
+	printf("d : %f\n", q2.d());
+	printf("\n-- destructor\n\n");
+	Quaternion* q = new Quaternion();
+	delete q;
+	
+
+
 	return 0;
-}*/
+}	
