@@ -46,6 +46,22 @@ bool Quaternion::operator==(Quaternion const& q)
 		   this->d() == q.d();
 }
 
+Quaternion Quaternion::operator+(Quaternion const& q)
+{
+	return Quaternion(q.a() + this->a(),
+					  q.b() + this->b(),
+					  q.c() + this->c(),
+					  q.d() + this->d());
+}
+
+Quaternion Quaternion::operator-(Quaternion const& q)
+{
+	return Quaternion(q.a() - this->a(),
+					  q.b() - this->b(),
+					  q.c() - this->c(),
+					  q.d() - this->d());
+}
+
 GLfloat Quaternion::a() const
 {
 	return _angle;
@@ -70,22 +86,13 @@ int main() {
 	printf("\n======== TEST QUATERNION ========\n\n");
 	printf("\n-- empty constructor\n\n");
 	Quaternion q0;
-	printf("a : %f\n", q0.a());
-	printf("b: %f\n", q0.b());
-	printf("c : %f\n", q0.c());
-	printf("d : %f\n", q0.d());
+	cout << "q0 = " << q0 << "\n";
 	printf("\n-- parameters constructor\n\n");
 	Quaternion q1(60.5, 1.0, 0.0, 0.0);
-	printf("a : %f\n", q1.a());
-	printf("b: %f\n", q1.b());
-	printf("c : %f\n", q1.c());
-	printf("d : %f\n", q1.d());
+	cout << "q1 = " << q1 << "\n";
 	printf("\n-- copy constructor\n\n");
 	Quaternion q2(q1);
-	printf("a : %f\n", q2.a());
-	printf("b: %f\n", q2.b());
-	printf("c : %f\n", q2.c());
-	printf("d : %f\n", q2.d());
+	cout << "q2 = " << q2 << "\n";
 	printf("\n-- destructor\n\n");
 	Quaternion* q = new Quaternion(15,0,1,0);
 	cout << "A dynamically allocated quaternion : \n Q = " << *q << "\n";
@@ -95,6 +102,10 @@ int main() {
 	printf("\n-- operator==\n\n");
 	printf("q1 == q2 ? : %s\n", q1 == q2 ? "true" : "false");
 	printf("q0 == q2 ? : %s\n", q0 == q2 ? "true" : "false");
+	printf("\n-- operator + and -\n\n");
+	cout << "q1+q2 = " << q1 + q2 << "\n";
+	cout << "q1-q2 = " << q1 - q2 << "\n";
+	cout << "q0-q2 = " << q0 - q2 << "\n";
 
 	
 

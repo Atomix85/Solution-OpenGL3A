@@ -24,9 +24,9 @@ public:
 	// -- OVERLOADED OPERATORS --
 	bool operator==(Quaternion const&);
 
-	/*Quaternion operator+(Quaternion const&);
+	Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
-	Quaternion operator*(Quaternion const&);
+	/*Quaternion operator*(Quaternion const&);
 	Quaternion operator/(Quaternion const&);
 
 	Quaternion operator+=(Quaternion const&);
