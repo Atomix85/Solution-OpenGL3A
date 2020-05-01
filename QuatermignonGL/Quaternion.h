@@ -26,8 +26,8 @@ public:
 
 	Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
-	/*Quaternion operator*(Quaternion const&);
-	Quaternion operator/(Quaternion const&);*/
+	Quaternion operator*(Quaternion const&);
+	//Quaternion operator/(Quaternion const&);
 
 	Quaternion operator+=(Quaternion const&);
 	Quaternion operator-=(Quaternion const&);

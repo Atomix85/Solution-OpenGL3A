@@ -62,6 +62,15 @@ Quaternion Quaternion::operator-(Quaternion const& q)
 					  q.d() - this->d());
 }
 
+Quaternion Quaternion::operator*(Quaternion const& q)
+{
+	return Quaternion(this->a() * q.a() - this->b() * q.b() - this->c() * q.c() - this->d() * q.d(),
+					  this->a() * q.b() + q.a() * this->b() + this->c() * q.d() - q.c() * this->d(),
+					  this->a() * q.c() + q.a() * this->c() + q.b() * this->d() - this->b() * q.d(),
+					  this->a() * q.d() + q.a() * this->d() + this->b() * q.c() - q.b() * this->c()
+				      );
+}
+
 Quaternion Quaternion::operator+=(Quaternion const& q)
 {
 	this->_angle   += q.a();
@@ -100,8 +109,15 @@ GLfloat Quaternion::d() const
 	return _axis[2];
 }
 
+std::ostream& operator<<(std::ostream& os, Quaternion const& q)
+{
+	os << "(" << q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
+	os << endl;
+	return os;
+}
+
 int main() {
-	printf("\n======== TEST QUATERNION ========\n\n");
+	printf("\n======== TEST QUATERNION OVERLOADED OPERATORS ========\n\n");
 	printf("\n-- empty constructor\n\n");
 	Quaternion q0;
 	cout << "q0 = " << q0 << "\n";
@@ -116,7 +132,7 @@ int main() {
 	cout << "A dynamically allocated quaternion : \n Q = " << *q << "\n";
 	delete q;
 	printf("The quaternion Q has been successfully freed.\n"
-		    "See the a value is making bullshit as it's expected now :  %d\n", q->a());
+		    "Look how the Q.a() value is making bullshit as it's expected now :  %d\n", q->a());
 	printf("\n-- operator==\n\n");
 	printf("q1 == q2 ? : %s\n", q1 == q2 ? "true" : "false");
 	printf("q0 == q2 ? : %s\n", q0 == q2 ? "true" : "false");
@@ -129,13 +145,18 @@ int main() {
 	cout << "after q1+=q1 we got q1 = " << q1 << "\n";
 	q1 -= q2;
 	cout << "after q1-=q2 we got q1 = " << q1 << "\n";
+	printf("\n-- operator *\n\n");
+	Quaternion q3(0,1,0,0);
+	Quaternion q4(0,0,1,0);
+	Quaternion e(1,0,0,0);
+	cout << "q3 = " << q3 << "q4 =" << q4 <<"\n neutral element : e ="<< e <<"\n absorbent element o = " << q0 <<"\n";
+	cout << "q3*q4 = " << q3 * q4 << "\n";
+	cout << "q4*q3 = " << q4 * q3 << "\n";
+	cout << "q4*e = " << q4 * e << "\n";
+	cout << "e*q4 = " << e * q4 << "\n";
+	cout << "o*q4 = " << q0 * q4 << "\n";
+	cout << "q4*o = " << q4 * q0 << "\n";
 
 	return 0;
 }
 
-std::ostream& operator<<(std::ostream& os, Quaternion const& q)
-{
-	os <<"("<< q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
-	os << endl;
-	return os;
-}
