@@ -1,5 +1,5 @@
 # QuatermignonGL - C++/OpenGL project to studying quaternions.
-This project was made for our python and maths classes.  
+This project was made for our maths classes.  
 
 Team members :
 - T. RAKOTOMANAMPISON
