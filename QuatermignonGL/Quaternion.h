@@ -25,23 +25,23 @@ public:
 	bool operator!=(Quaternion const&);
 	Quaternion& operator=(const Quaternion&);
 
-
 	Quaternion operator+(Quaternion const&);
 	Quaternion operator-(Quaternion const&);
 	Quaternion operator*(Quaternion const&);
-	//Quaternion operator/(Quaternion const&);
+	Quaternion operator/(Quaternion const&);
 
 	Quaternion operator+=(Quaternion const&);
 	Quaternion operator-=(Quaternion const&);
 	Quaternion operator*=(Quaternion const&);
-	//Quaternion operator/=(Quaternion const&);
+	Quaternion operator/=(Quaternion const&);
 
-	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
-	//friend std::istream& operator>>(std::istream&, Quaternion &);
-	
-
+	// scalar product
 	//friend Quaternion operator* (GLfloat scalar, Quaternion const&);
 	//friend Quaternion operator*= (GLfloat scalar, Quaternion const&);
+
+	// c out and c in
+	friend std::ostream& operator<<(std::ostream&, Quaternion const& );
+	//friend std::istream& operator>>(std::istream&, Quaternion &);
 
 	// -- GETTERS --
 	GLfloat a() const;
@@ -52,7 +52,7 @@ public:
 	// -- OTHER MATHS OPERATIONS --
 
 	Quaternion conjugate();
-	GLfloat norm();
+	GLfloat norm() const;
 	void normalize();
 	//static Quaternion Matrix2Quaternion(Matrix const&) const;
 	//static Quaternion Quaternion2Matrix(Quaternion const&) const;

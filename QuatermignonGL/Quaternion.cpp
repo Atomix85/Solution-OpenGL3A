@@ -87,6 +87,13 @@ Quaternion Quaternion::operator*(Quaternion const& q)
 				      );
 }
 
+Quaternion Quaternion::operator/(Quaternion const& q)
+{
+	GLfloat invNorm = 1.0 / q.norm();
+	Quaternion  q2(q.a()* invNorm, -q.b() * invNorm, -q.c() * invNorm, -q.d() * invNorm);
+	return (*this * q2);
+}
+
 
 
 Quaternion Quaternion::operator+=(Quaternion const& q)
@@ -105,6 +112,12 @@ Quaternion Quaternion::operator-=(Quaternion const& q)
 Quaternion Quaternion::operator*=(Quaternion const& q)
 {
 	*this = *this * q;
+	return *this;
+}
+
+Quaternion Quaternion::operator/=(Quaternion const& q)
+{
+	*this = *this / q;
 	return *this;
 }
 
@@ -133,7 +146,7 @@ Quaternion Quaternion::conjugate()
 	return Quaternion(this->a(), -this->b(), -this->c(), -this->d());
 }
 
-GLfloat Quaternion::norm()
+GLfloat Quaternion::norm() const
 {
 	GLfloat sum = _angle * _angle;
 	for (int i = 0; i < 3; i++) { sum += _axis[i]; }
