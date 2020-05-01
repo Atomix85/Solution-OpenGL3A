@@ -1,5 +1,6 @@
 #include "Quaternion.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 Quaternion::Quaternion()
@@ -46,6 +47,11 @@ bool Quaternion::operator==(Quaternion const& q)
 		   this->d() == q.d();
 }
 
+bool Quaternion::operator!=(Quaternion const&q)
+{
+	return !(*this==q);
+}
+
 Quaternion& Quaternion::operator=(const Quaternion& q)
 {
 	if (this == &q) return *this;
@@ -81,6 +87,13 @@ Quaternion Quaternion::operator*(Quaternion const& q)
 				      );
 }
 
+Quaternion Quaternion::operator/(Quaternion const& q)
+{
+	GLfloat invNorm = 1.0 / q.norm();
+	Quaternion  q2(q.a()* invNorm, -q.b() * invNorm, -q.c() * invNorm, -q.d() * invNorm);
+	return (*this * q2);
+}
+
 
 
 Quaternion Quaternion::operator+=(Quaternion const& q)
@@ -102,6 +115,12 @@ Quaternion Quaternion::operator*=(Quaternion const& q)
 	return *this;
 }
 
+Quaternion Quaternion::operator/=(Quaternion const& q)
+{
+	*this = *this / q;
+	return *this;
+}
+
 GLfloat Quaternion::a() const
 {
 	return _angle;
@@ -120,6 +139,25 @@ GLfloat Quaternion::c() const
 GLfloat Quaternion::d() const
 {
 	return _axis[2];
+}
+
+Quaternion Quaternion::conjugate()
+{
+	return Quaternion(this->a(), -this->b(), -this->c(), -this->d());
+}
+
+GLfloat Quaternion::norm() const
+{
+	GLfloat sum = _angle * _angle;
+	for (int i = 0; i < 3; i++) { sum += _axis[i]; }
+	return sqrt(sum);
+}
+
+void Quaternion::normalize()
+{
+	GLfloat norm = this->norm();
+	_angle = _angle / norm;
+	for (int i = 0; i < 3; i++) { _axis[i] = _axis[i] / norm; }
 }
 
 std::ostream& operator<<(std::ostream& os, Quaternion const& q)
@@ -146,9 +184,11 @@ int main() {
 	delete q;
 	printf("The quaternion Q has been successfully freed.\n"
 		    "Look how the Q.a() value is making bullshit as it's expected now :  %d\n", q->a());
-	printf("\n-- operator==\n\n");
+	printf("\n-- operator== and !=\n\n");
 	printf("q1 == q2 ? : %s\n", q1 == q2 ? "true" : "false");
 	printf("q0 == q2 ? : %s\n", q0 == q2 ? "true" : "false");
+	printf("q1 != q2 ? : %s\n", q1 != q2 ? "true" : "false");
+	printf("q0 != q2 ? : %s\n", q0 != q2 ? "true" : "false");
 	printf("\n-- operator + and -\n\n");
 	cout << "q1+q2 = " << q1 + q2 << "\n";
 	cout << "q1-q2 = " << q1 - q2 << "\n";
