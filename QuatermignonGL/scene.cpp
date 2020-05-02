@@ -47,7 +47,7 @@ void Render(void)
     // --- CUBE ---
 
     // #Fee9fc color is the most beautifule pink in the world.
-    glColor3f(0.99,	0.87,0.97);
+    glColor3f(0.99, 0.87, 0.97);
 
     // Rotations perform on axis
     glRotatef(xAngle, 1.0, 0.0, 0.0);
