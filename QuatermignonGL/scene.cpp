@@ -2,12 +2,13 @@
 #include "Quaternion.h"
 #include "Camera.h"
 
+/** GLOBALS **/
 GLfloat xAngle, yAngle, zAngle;
 GLdouble size = 1.5;
 const GLint zoom = -8;
 Camera* cam = new Camera();
 
-/** FONCTIONS DE GESTION CLAVIER **/
+/** INPUTS MANAGER FUNCTIONS **/
 void KeyboardDown(unsigned char key, int xx, int yy)
 {
     switch (key)
@@ -61,6 +62,7 @@ void SpecialDown(int key, int xx, int yy)
         break;
     }
 }
+
 void SpecialUp(int key, int xx, int yy)
 {
     switch (key)
@@ -76,42 +78,29 @@ void SpecialUp(int key, int xx, int yy)
     }
 }
 
-/** FONCTIONS DE GESTION SOURIS (ORIENTATION CAMERA) **/
 void mouseMove(int x, int y)
 {
     // Rentres uniquement lors du clic
     cam->orienterCam(x, y);
 }
-void mouseButton(int button, int state, int x, int y)
-{
-    // Gestion camera en fonction du clic souris
-    if (button == GLUT_LEFT_BUTTON)
-    {
-        // Relacher la camera
-        if (state == GLUT_UP)
-        {
-            cam->releaseCam();
-        }
-        // Mise à jour origine du clic
-        else
-        {
-            cam->grabCam(x, y);
-        }
-    }
-}
+void mouseButton(int button, int state, int x, int y){ cam->grabCam(x, y); }
 
-/** GESTION DEPLACEMENT CAMERA **/
-void computePos(int inutile)
+/** CAMERA MOVEMENTS **/
+void computePos(int osef)
 {
     cam->updatePos();
     glutTimerFunc(10, computePos, 0);
 }
 
+/** GLUT FUNCTIONS **/
 void Initialize(void)
 {
+    glutSetCursor(GLUT_CURSOR_NONE);
+
     xAngle = yAngle = zAngle = 30.0;
     xAngle = 43;
     yAngle = 50;
+
 }
 
 void Shutdown(void)
@@ -140,38 +129,29 @@ void Update(void)
 void Render(void)
 {
     glMatrixMode(GL_MODELVIEW);
-    // clear the drawing buffer.
     glClear(GL_COLOR_BUFFER_BIT);
-    // clear the identity matrix.
     glLoadIdentity();
-    // translate the draw on z to zoom.
     glTranslatef(0.0, 0.0, zoom);
-    gluLookAt(cam->posx, cam->posy, cam->posz,
-        cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz,
-        0.0f, 1.0f, 0.0f
-    );
+    gluLookAt(cam->posx, cam->posy, cam->posz,cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz, 0.0f, 1.0f, 0.0f);
 
     glutTimerFunc(10, computePos, 0);
 
-    /** GESTION CLAVIER **/
     glutIgnoreKeyRepeat(1);
     glutKeyboardFunc(KeyboardDown);
     glutKeyboardUpFunc(KeyboardUp);
     glutSpecialFunc(SpecialDown);
     glutSpecialUpFunc(SpecialUp);
 
-    /** GESTION SOURIS **/
     glutMouseFunc(mouseButton);
-    glutMotionFunc(mouseMove);
+    glutPassiveMotionFunc(mouseMove);
 
 
     // --- CUBE ---
 
     // #Fee9fc color is the most beautifule pink in the world.
     glColor3f(0.99, 0.87, 0.97);
-    Quaternion q(xAngle, 1.0, 0.0, 0.0); // just to test if quaternion can be called here.
     // Rotations perform on axis
-    glRotatef(q.a(),q.b(),q.c(),q.d());
+    glRotatef(xAngle, 1.0, 0.0, 0.0);
     glRotatef(yAngle, 0.0, 1.0, 0.0);
     glRotatef(zAngle, 0.0, 0.0, 1.0);
 

@@ -32,5 +32,12 @@ extern void Render(void);
 extern void Initialize(void);
 extern void Shutdown(void);
 extern void Reshape(int x, int y);
+extern void KeyboardDown(unsigned char key, int xx, int yy);
+extern void KeyboardUp(unsigned char key, int xx, int yy);
+extern void SpecialDown(int key, int xx, int yy);
+extern void SpecialUp(int key, int xx, int yy);
+extern void mouseMove(int x, int y);
+extern void computePos(int inutile);
+
 
 #endif // OPENGL_INITIATION_COMMON_H
