@@ -1,8 +1,10 @@
 #include "common.h"
+#include "Quaternion.h"
 
 GLfloat xAngle, yAngle, zAngle;
 GLdouble size = 1.5;
 const GLint zoom = -8;
+
 
 void Initialize(void)
 {
@@ -48,9 +50,9 @@ void Render(void)
 
     // #Fee9fc color is the most beautifule pink in the world.
     glColor3f(0.99, 0.87, 0.97);
-
+    Quaternion q(xAngle, 1.0, 0.0, 0.0); // just to test if quaternion can be called here.
     // Rotations perform on axis
-    glRotatef(xAngle, 1.0, 0.0, 0.0);
+    glRotatef(q.a(),q.b(),q.c(),q.d());
     glRotatef(yAngle, 0.0, 1.0, 0.0);
     glRotatef(zAngle, 0.0, 0.0, 1.0);
 
