@@ -1,10 +1,111 @@
 #include "common.h"
 #include "Quaternion.h"
+#include "Camera.h"
 
 GLfloat xAngle, yAngle, zAngle;
 GLdouble size = 1.5;
 const GLint zoom = -8;
+Camera* cam = new Camera();
 
+/** FONCTIONS DE GESTION CLAVIER **/
+void KeyboardDown(unsigned char key, int xx, int yy)
+{
+    switch (key)
+    {
+    case 'e': // Unlock Camera
+        cam->locked = (cam->locked) ? 0 : 1;
+        break;
+    case 'z':
+        cam->deltaForward = 1;
+        break;
+    case 's':
+        cam->deltaForward = -1;
+        break;
+    case 'd':
+        cam->deltaStrafe = -1;
+        break;
+    case 'q':
+        cam->deltaStrafe = 1;
+        break;
+    }
+}
+void KeyboardUp(unsigned char key, int xx, int yy)
+{
+    switch (key)
+    {
+    case 'z':
+    case 's':
+        cam->deltaForward = 0;
+        break;
+    case 'q':
+    case 'd':
+        cam->deltaStrafe = 0;
+        break;
+    }
+}
+void SpecialDown(int key, int xx, int yy)
+{
+    switch (key)
+    {
+    case GLUT_KEY_UP:
+        cam->deltaForward = 1;
+        break;
+    case GLUT_KEY_DOWN:
+        cam->deltaForward = -1;
+        break;
+    case GLUT_KEY_RIGHT:
+        cam->deltaStrafe = -1;
+        break;
+    case GLUT_KEY_LEFT:
+        cam->deltaStrafe = 1;
+        break;
+    }
+}
+void SpecialUp(int key, int xx, int yy)
+{
+    switch (key)
+    {
+    case GLUT_KEY_UP:
+    case GLUT_KEY_DOWN:
+        cam->deltaForward = 0;
+        break;
+    case GLUT_KEY_RIGHT:
+    case GLUT_KEY_LEFT:
+        cam->deltaStrafe = 0;
+        break;
+    }
+}
+
+/** FONCTIONS DE GESTION SOURIS (ORIENTATION CAMERA) **/
+void mouseMove(int x, int y)
+{
+    // Rentres uniquement lors du clic
+    cam->orienterCam(x, y);
+}
+void mouseButton(int button, int state, int x, int y)
+{
+    // Gestion camera en fonction du clic souris
+    if (button == GLUT_LEFT_BUTTON)
+    {
+        // Relacher la camera
+        if (state == GLUT_UP)
+        {
+            cam->releaseCam();
+        }
+        // Mise à jour origine du clic
+        else
+        {
+            cam->grabCam(x, y);
+        }
+    }
+}
+
+/** GESTION DEPLACEMENT CAMERA **/
+void computePos(int inutile)
+{
+    cam->updatePos();
+    glutTimerFunc(10, computePos, 0);
+}
 
 void Initialize(void)
 {
@@ -45,6 +146,24 @@ void Render(void)
     glLoadIdentity();
     // translate the draw on z to zoom.
     glTranslatef(0.0, 0.0, zoom);
+    gluLookAt(cam->posx, cam->posy, cam->posz,
+        cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz,
+        0.0f, 1.0f, 0.0f
+    );
+
+    glutTimerFunc(10, computePos, 0);
+
+    /** GESTION CLAVIER **/
+    glutIgnoreKeyRepeat(1);
+    glutKeyboardFunc(KeyboardDown);
+    glutKeyboardUpFunc(KeyboardUp);
+    glutSpecialFunc(SpecialDown);
+    glutSpecialUpFunc(SpecialUp);
+
+    /** GESTION SOURIS **/
+    glutMouseFunc(mouseButton);
+    glutMotionFunc(mouseMove);
+
 
     // --- CUBE ---
 
@@ -62,6 +181,8 @@ void Render(void)
     glutSolidCube(size);
     // Flush buffers to screen
     glFlush();
+
+
 
 }
 
