@@ -36,7 +36,8 @@ public:
 	Quaternion operator/=(Quaternion const&);
 
 	// scalar product
-	//friend Quaternion operator* (GLfloat scalar, Quaternion const&);
+	friend Quaternion operator* (GLfloat scalar, Quaternion const&);
+	friend Quaternion operator* (Quaternion const& ,GLfloat scalar);
 	//friend Quaternion operator*= (GLfloat scalar, Quaternion const&);
 
 	// c out and c in
