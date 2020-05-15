@@ -1,7 +1,7 @@
 #include "common.h"
 void Reshape(int x, int y);
 
-int main(int argc, char* argv[])
+/*int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitWindowSize(350, 350);
@@ -22,4 +22,4 @@ int main(int argc, char* argv[])
 	Shutdown();
 
 	return 0;
-}
+}*/

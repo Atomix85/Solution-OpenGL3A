@@ -160,13 +160,23 @@ void Quaternion::normalize()
 	for (int i = 0; i < 3; i++) { _axis[i] = _axis[i] / norm; }
 }
 
+Quaternion operator*(GLfloat alpha, Quaternion const& q)
+{
+	return Quaternion(q.a() * alpha, q.b() * alpha, q.c() * alpha, q.d() * alpha);
+}
+
+Quaternion operator*(Quaternion const& q, GLfloat alpha)
+{
+	return Quaternion(q.a() * alpha, q.b() * alpha, q.c() * alpha, q.d() * alpha);
+}
+
 std::ostream& operator<<(std::ostream& os, Quaternion const& q)
 {
 	os << "(" << q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
 	os << endl;
 	return os;
 }
-/*
+
 int main() {
 	printf("\n======== TEST QUATERNION OVERLOADED OPERATORS ========\n\n");
 	printf("\n-- empty constructor\n\n");
@@ -209,7 +219,10 @@ int main() {
 	cout << "e*q4 = " <<  e  * q4 << "\n";
 	cout << "o*q4 = " <<  q0 * q4 << "\n";
 	cout << "q4*o = " <<  q4 * q0 << "\n";
+	printf("\n-- operator * for scalar product\n\n");
+	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
+	cout << "2 * q3 = " <<  2 * q3 << "\n";
 
 	return 0;
-}*/
+}
 
