@@ -160,6 +160,82 @@ void Quaternion::normalize()
 	for (int i = 0; i < 3; i++) { _axis[i] = _axis[i] / norm; }
 }
 
+Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
+{
+	
+	
+	GLfloat trace = m[0] + m[5] + m[10];
+	GLfloat S, X, Y, Z, W;
+
+	if (trace >= 0) { 
+		S = sqrt(trace + m[15]);
+		W = 0.5f * S;
+		S = 0.5f / S;
+		X = (m[6] - m[9]) * S;
+		Y = (m[8] - m[2]) * S;
+		Z = (m[1] - m[4]) * S;
+		return Quaternion(W, X, Y, Z);
+	}
+	if (m[0] > m[5] && m[0] > m[10]) { 
+		S = sqrt(m[15] + m[0] - m[5] - m[10]);
+		X = S * 0.5f;
+		S = 0.5f / S;
+		Y = (m[1] + m[4]) * S;
+		Z = (m[8] + m[2]) * S;
+		W = (m[6] - m[9]) * S;
+		return Quaternion(W, X, Y, Z);
+	}
+	if (m[5] > m[10]) { // by y
+		S = sqrt(m[15] + m[5] - m[0] - m[10]);
+		Y = S * 0.5f;
+		S = 0.5f / S;
+		X = (m[1] + m[4]) * S;
+		Z = (m[6] + m[9]) * S;
+		W = (m[8] - m[2]) * S;
+		return Quaternion(W, X, Y, Z);
+	}
+	
+		S = sqrt(1 + m[10] - m[0] - m[5]);
+		Z = S * 0.5f;
+		S = 0.5f / S;
+		X = (m[8] + m[2]) * S;
+		Y = (m[6] + m[9]) * S;
+		W = (m[1] - m[4]) * S;
+		return Quaternion(W, X, Y, Z);
+
+}
+
+GLfloat* Quaternion::quaternion2Matrix()
+{
+	// always normalize
+	this->normalize();
+	GLfloat* matrix = (GLfloat*) malloc(16 * sizeof(GLfloat));
+
+	// 4th line and 4th column are put to 0 because their are extra element
+	// only used for openGL compatibility.
+	matrix[3] = matrix[7] = matrix[11] = matrix[12] = matrix[13] = matrix[14] = 0;
+	matrix[15] = 1;
+
+	// the 3x3 rotation sub-matrix is here : 
+	matrix[0] = 1 - 2 * (this->c() * this->c() + this->d() * this->d());
+	matrix[1] = 2 * (this->b() * this->c() - this->d() * this->a());
+	matrix[2] = 2 * (this->b() * this->d() + this->c() * this->a());
+
+	matrix[4] = 2 * (this->b() * this->c() + this->d() * this->a());
+	matrix[5] = 1 - 2 * (this->b() * this->b() + this->d() * this->d());
+	matrix[6] = 2 * (this->c() * this->d() -  this->b() * this->a());
+
+	matrix[8] = 2 * (this->b() * this->d() - this->c() * this->a());
+	matrix[9] = 2 * (this->c() * this->d() +  this->b() * this->a());
+	matrix[10] = 1 - 2 * (this->b() * this->b() + this->c() * this->c());
+
+	
+
+	return matrix;
+}
+
+
+
 Quaternion operator*(GLfloat alpha, Quaternion const& q)
 {
 	return Quaternion(q.a() * alpha, q.b() * alpha, q.c() * alpha, q.d() * alpha);
@@ -221,7 +297,19 @@ int main() {
 	printf("\n-- operator * for scalar product\n\n");
 	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
 	cout << "2 * q3 = " <<  2 * q3 << "\n";
-	
+	printf("testing rotation\n"); 
+	Quaternion qRot(50, 0, 1 , 1); 
+	cout << "qRot = " << qRot;
+	GLfloat* rot = qRot.quaternion2Matrix();	
+	cout << "qRot norm = " << qRot;
+
+	for (int i = 0; i < 16; i++)
+	{
+		if (i % 4 == 0)
+			cout << '\n';
+		cout << rot[i] <<" | ";
+	}
+	cout << "\n" << qRot.matrix2Quaternion(rot);
+
 	return 0;
 }*/
-
