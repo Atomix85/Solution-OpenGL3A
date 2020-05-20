@@ -165,15 +165,6 @@ Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 	
 	
 	GLfloat trace = m[0] + m[5] + m[10] + m[15];
-	
-	cout << "trace values are :\n";
-	cout << m[0] << "\n";
-	cout << m[5] << "\n";
-	cout << m[10] << "\n";
-	cout << m[15] << "\n";
-
-	cout << "trace is : " << trace << "\n\n\n\n";
-
 	GLfloat r = sqrt(trace) / 2;
 
 	//if (r == 0)
@@ -192,44 +183,29 @@ Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 
 GLfloat* Quaternion::quaternion2Matrix()
 {
+	// always normalize
 	this->normalize();
+	GLfloat* matrix = (GLfloat*) malloc(16 * sizeof(GLfloat));
 
-	GLfloat* matrix = (GLfloat*)malloc(16 * sizeof(GLfloat));
-	/*
-		X = b
-		Y = c 
-		Z = d
-		W = a
-	
-	*/
-	//x = this->b  y = this->c et z = this->d w = this->a
-	/*
-	GLfloat squareY = this->c() * this->c();
-	GLfloat squareZ = this->d() * this->d();
-	GLfloat squareW = this->a() * this->a();
-	GLfloat squareX = this->b() * this->b();
-	  */ 
-	GLfloat squareY = this->c() * this->c();
-	GLfloat squareZ = this->d() * this->d();
-	GLfloat squareW = this->a() * this->a();
-	GLfloat squareX = this->b() * this->b();
-
-	matrix[0] = 1 - 2 * squareY - 2 * squareZ;
-	matrix[1] = 2 * this->b() * this->c() + 2 * this->d() * this->a();
-	matrix[2] = 2 * this->b() * this->d() - 2 * this->c() * this->a();
-	matrix[3] = 0;
-	matrix[4] = 2 * this->b() * this->c() - 2 * this->d() * this->a();
-	matrix[5] = 1 - 2 * squareX - 2 * squareZ; 
-	matrix[6] = 2 * this->c() * this->d() + 2 * this->b() * this->a();
-	matrix[7] = 0;
-	matrix[8] = 2 * this->b() * this->d() + 2 * this->c() * this->a();
-	matrix[9] = 2 * this->c() * this->d() - 2 * this->b() * this->a();
-	matrix[10] = 1 - 2 * squareX - 2 * squareY;
-	matrix[11] = 0;
-	matrix[12] = 0;
-	matrix[13] = 0;
-	matrix[14] = 0;
+	// 4th line and 4th column are put to 0 because their are extra element
+	// only used for openGL compatibility.
+	matrix[3] = matrix[7] = matrix[11] = matrix[12] = matrix[13] = matrix[14] = 0;
 	matrix[15] = 1;
+
+	// the 3x3 rotation sub-matrix is here : 
+	matrix[0] = 1 - 2 * (this->c() * this->c() + this->d() * this->d());
+	matrix[1] = 2 * (this->b() * this->c() - this->d() * this->a());
+	matrix[2] = 2 * (this->b() * this->d() + this->c() * this->a());
+
+	matrix[4] = 2 * (this->b() * this->c() + this->d() * this->a());
+	matrix[5] = 1 - 2 * (this->b() * this->b() + this->d() * this->d());
+	matrix[6] = 2 * (this->c() * this->d() -  this->b() * this->a());
+
+	matrix[8] = 2 * (this->b() * this->d() - this->c() * this->a());
+	matrix[9] = 2 * (this->c() * this->d() +  this->b() * this->a());
+	matrix[10] = 1 - 2 * (this->b() * this->b() + this->c() * this->c());
+
+	
 
 	return matrix;
 }
@@ -299,18 +275,17 @@ int main() {
 	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
 	cout << "2 * q3 = " <<  2 * q3 << "\n";
 	printf("testing rotation\n"); 
-	Quaternion qRot(0, 1, 0, 1);
-	GLfloat* rot = qRot.quaternion2Matrix();
-	
+	Quaternion qRot(1, 0, 0 , 0);
+	cout << "qRot = " << qRot;
+	GLfloat* rot = qRot.quaternion2Matrix();	
 	for (int i = 0; i < 16; i++)
 	{
 		if (i % 4 == 0)
 			cout << '\n';
-		cout << rot[i];
+		cout << rot[i] <<" | ";
 		//printf("%d \n", i);
 	}
-
 	cout << "\n" << qRot.matrix2Quaternion(rot);
-	
+
 	return 0;
 }
