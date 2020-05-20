@@ -175,8 +175,7 @@ std::ostream& operator<<(std::ostream& os, Quaternion const& q)
 	os << "(" << q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
 	os << endl;
 	return os;
-}
-
+}/*
 int main() {
 	printf("\n======== TEST QUATERNION OVERLOADED OPERATORS ========\n\n");
 	printf("\n-- empty constructor\n\n");
@@ -222,7 +221,7 @@ int main() {
 	printf("\n-- operator * for scalar product\n\n");
 	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
 	cout << "2 * q3 = " <<  2 * q3 << "\n";
-
+	
 	return 0;
-}
+}*/
 

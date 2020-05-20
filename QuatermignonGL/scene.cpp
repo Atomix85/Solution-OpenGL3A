@@ -1,12 +1,17 @@
 #include "common.h"
 #include "Quaternion.h"
 #include "Camera.h"
+#include <math.h>
+
+#define M_PI 3.14159265359
 
 /** GLOBALS **/
-GLfloat xAngle, yAngle, zAngle;
+GLfloat yaw, pitch;
+GLfloat distance = 10;
 GLdouble size = 1.5;
 const GLint zoom = -8;
 Camera* cam = new Camera();
+int isRunning = 1;
 
 /** INPUTS MANAGER FUNCTIONS **/
 void KeyboardDown(unsigned char key, int xx, int yy)
@@ -28,6 +33,9 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'q':
         cam->deltaStrafe = 1;
         break;
+	case 27:
+		isRunning = 0;
+		break;
     }
 }
 void KeyboardUp(unsigned char key, int xx, int yy)
@@ -80,14 +88,24 @@ void SpecialUp(int key, int xx, int yy)
 
 void mouseMove(int x, int y)
 {
+	
     // Rentres uniquement lors du clic
     cam->orienterCam(x, y);
+	pitch += (x - 350) * 0.001;
+	
+	 
+	GLfloat yawDif = (y - 350) * 0.001f;
+
+	if(yaw + yawDif > -M_PI/4 && yaw + yawDif < M_PI / 4)
+		yaw += yawDif;
+	glutWarpPointer(350, 350);
 }
 void mouseButton(int button, int state, int x, int y){ cam->grabCam(x, y); }
 
 /** CAMERA MOVEMENTS **/
 void computePos(int osef)
 {
+
     cam->updatePos();
     glutTimerFunc(10, computePos, 0);
 }
@@ -96,10 +114,8 @@ void computePos(int osef)
 void Initialize(void)
 {
     glutSetCursor(GLUT_CURSOR_NONE);
-
-    xAngle = yAngle = zAngle = 30.0;
-    xAngle = 43;
-    yAngle = 50;
+	distance = 5;
+	yaw = pitch = .0;
 
 }
 
@@ -120,10 +136,9 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
-    xAngle += 0.01;
-    yAngle += 0.01;
-    zAngle += 0.01;
-    Render();
+	if (isRunning == 0)
+		glutLeaveMainLoop();
+	Render();
 }
 
 void Render(void)
@@ -131,8 +146,19 @@ void Render(void)
     glMatrixMode(GL_MODELVIEW);
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
-    glTranslatef(0.0, 0.0, zoom);
-    gluLookAt(cam->posx, cam->posy, cam->posz,cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz, 0.0f, 1.0f, 0.0f);
+
+	gluLookAt(
+		distance * cos(pitch) * cos(yaw),
+		distance * cos(pitch) * sin(yaw),
+		distance* sin(pitch),
+		0, 
+		0, 
+		0, 
+		0.0f,
+		1.0f,
+		0.0f);
+
+	//glTranslatef(0, 0, -zoom);
 
     glutTimerFunc(10, computePos, 0);
 
@@ -146,14 +172,8 @@ void Render(void)
     glutPassiveMotionFunc(mouseMove);
 
 
-    // --- CUBE ---
-
     // #Fee9fc color is the most beautifule pink in the world.
     glColor3f(0.99, 0.87, 0.97);
-    // Rotations perform on axis
-    glRotatef(xAngle, 1.0, 0.0, 0.0);
-    glRotatef(yAngle, 0.0, 1.0, 0.0);
-    glRotatef(zAngle, 0.0, 0.0, 1.0);
 
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);

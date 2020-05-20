@@ -1,10 +1,12 @@
 #include "common.h"
 void Reshape(int x, int y);
 
-/*int main(int argc, char* argv[])
+
+int main(int argc, char* argv[])
 {
+	
 	glutInit(&argc, argv);
-	glutInitWindowSize(350, 350);
+	glutInitWindowSize(700, 700);
 	glutCreateWindow("Rotating Cube #Fee9fc");
 
 #if defined(FREEGLUT)
@@ -20,6 +22,5 @@ void Reshape(int x, int y);
 	glutMainLoop();
 
 	Shutdown();
-
 	return 0;
-}*/
+}
