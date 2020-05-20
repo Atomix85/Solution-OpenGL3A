@@ -172,7 +172,7 @@ Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 	cout << m[10] << "\n";
 	cout << m[15] << "\n";
 
-	cout << "trace is : " << trace;
+	cout << "trace is : " << trace << "\n\n\n\n";
 
 	GLfloat r = sqrt(trace) / 2;
 
@@ -192,30 +192,38 @@ Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 
 GLfloat* Quaternion::quaternion2Matrix()
 {
+	this->normalize();
+
 	GLfloat* matrix = (GLfloat*)malloc(16 * sizeof(GLfloat));
 	/*
-		X = A
-		Y = B 
-		Z = C
-		W = D
+		X = b
+		Y = c 
+		Z = d
+		W = a
 	
 	*/
-	//x = this->a  y = this->b et z = this->C w = this->d
-	GLfloat squareY = this->b() * this->b();
-	GLfloat squareZ = this->c() * this->c();
-	GLfloat squareW = this->d() * this->d();
-	GLfloat squareX = this->a() * this->a();
-	   
+	//x = this->b  y = this->c et z = this->d w = this->a
+	/*
+	GLfloat squareY = this->c() * this->c();
+	GLfloat squareZ = this->d() * this->d();
+	GLfloat squareW = this->a() * this->a();
+	GLfloat squareX = this->b() * this->b();
+	  */ 
+	GLfloat squareY = this->c() * this->c();
+	GLfloat squareZ = this->d() * this->d();
+	GLfloat squareW = this->a() * this->a();
+	GLfloat squareX = this->b() * this->b();
+
 	matrix[0] = 1 - 2 * squareY - 2 * squareZ;
-	matrix[1] = 2 * this->a() * this->b() + 2 * this->c() * this->d();
-	matrix[2] = 2 * this->a() * this->c() - 2 * this->b() * this->d();
+	matrix[1] = 2 * this->b() * this->c() + 2 * this->d() * this->a();
+	matrix[2] = 2 * this->b() * this->d() - 2 * this->c() * this->a();
 	matrix[3] = 0;
-	matrix[4] = 2 * this->a() * this->b() - 2 * this->c() * this->d();
+	matrix[4] = 2 * this->b() * this->c() - 2 * this->d() * this->a();
 	matrix[5] = 1 - 2 * squareX - 2 * squareZ; 
-	matrix[6] = 2 * this->b() * this->c() + 2 * this->a() * this->d();
+	matrix[6] = 2 * this->c() * this->d() + 2 * this->b() * this->a();
 	matrix[7] = 0;
-	matrix[8] = 2 * this->a() * this->c() + 2 * this->b() * this->d();
-	matrix[9] = 2 * this->b() * this->c() - 2 * this->a() * this->d();
+	matrix[8] = 2 * this->b() * this->d() + 2 * this->c() * this->a();
+	matrix[9] = 2 * this->c() * this->d() - 2 * this->b() * this->a();
 	matrix[10] = 1 - 2 * squareX - 2 * squareY;
 	matrix[11] = 0;
 	matrix[12] = 0;
@@ -291,7 +299,7 @@ int main() {
 	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
 	cout << "2 * q3 = " <<  2 * q3 << "\n";
 	printf("testing rotation\n"); 
-	Quaternion qRot(1, 0, 1, 0);
+	Quaternion qRot(0, 1, 0, 1);
 	GLfloat* rot = qRot.quaternion2Matrix();
 	
 	for (int i = 0; i < 16; i++)
@@ -302,7 +310,7 @@ int main() {
 		//printf("%d \n", i);
 	}
 
-	cout << '\n' << qRot.matrix2Quaternion(rot);
+	cout << "\n" << qRot.matrix2Quaternion(rot);
 	
 	return 0;
 }
