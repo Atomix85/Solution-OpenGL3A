@@ -165,18 +165,17 @@ Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 	
 	
 	GLfloat trace = m[0] + m[5] + m[10] + m[15];
-	GLfloat r = sqrt(trace) / 2;
+	GLfloat S, X, Y, Z, W;
+	if (trace > 0) {
+		S = 0.5 / sqrt(trace);
+		X = (m[6] - m[9]) * S;
+		Y = (m[8] - m[2]) * S;
+		Z = (m[1] - m[4]) * S;
+		W = 0.25 / S;
 
-	//if (r == 0)
-		//return;
+	}
 
-	GLfloat qb = (1 / (4 * trace)) * (m[6] - m[9]);
-
-	GLfloat qc = (1 / (4 * trace)) * (m[8] - m[2]);
-
-	GLfloat qd = (1 / (4 * trace)) * (m[1] - m[5]);
-
-	Quaternion q(r,qb,qc,qd);
+	Quaternion q(W,X,Y,Z);
 
 	return q;
 }
@@ -275,9 +274,11 @@ int main() {
 	cout << "q3 * 2 = " <<  q3 * 2  << "\n";
 	cout << "2 * q3 = " <<  2 * q3 << "\n";
 	printf("testing rotation\n"); 
-	Quaternion qRot(1, 0, 0 , 0);
+	Quaternion qRot(1, 0, 0 , 0); 
 	cout << "qRot = " << qRot;
 	GLfloat* rot = qRot.quaternion2Matrix();	
+	cout << "qRot norm = " << qRot;
+
 	for (int i = 0; i < 16; i++)
 	{
 		if (i % 4 == 0)
