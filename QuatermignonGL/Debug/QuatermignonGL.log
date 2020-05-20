@@ -1,0 +1,4 @@
+﻿  Quaternion.cpp
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\Quaternion.cpp(92,18): warning C4244: 'initialisation' : conversion de 'double' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\Quaternion.cpp(263,9): warning C4477: 'printf' : la chaîne de format '%d' nécessite un argument de type 'int', mais l'argument variadique 1 est de type 'double'
+  QuatermignonGL.vcxproj -> E:\openglproj\Solution-OpenGL3A\Debug\QuatermignonGL.exe

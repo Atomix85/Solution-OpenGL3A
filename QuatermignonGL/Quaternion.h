@@ -55,8 +55,8 @@ public:
 	Quaternion conjugate();
 	GLfloat norm() const;
 	void normalize();
-	//static Quaternion Matrix2Quaternion(Matrix const&) const;
-	//static Quaternion Quaternion2Matrix(Quaternion const&) const;
+	Quaternion matrix2Quaternion(GLfloat* const&);
+	GLfloat* quaternion2Matrix();
 };
 
 #endif
