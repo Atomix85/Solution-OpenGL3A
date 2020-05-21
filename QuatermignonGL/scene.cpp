@@ -133,7 +133,7 @@ void Reshape(int x, int y)
     if (y == 0 || x == 0) return;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(39.0, (GLdouble)x / (GLdouble)y, 0.6, 210.0);
+    gluPerspective(39.0, (GLdouble)x / (GLdouble)y, 0.6, 21.0);
     glMatrixMode(GL_MODELVIEW);
     glViewport(0, 0, x, y);  //Use the whole window for rendering
 }
@@ -211,7 +211,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion identity(50, 0, 0, 1);
+	Quaternion identity(0, 1, 0, 0);
 	Cube cubePrincipal(0,0,0, identity);
 
 	cubePrincipal.draw();

@@ -1,12 +1,2 @@
-﻿  scene.cpp
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(95,28): warning C4244:  '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(153,26): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(153,14): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(154,25): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(154,14): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(161,28): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(161,20): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(162,27): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(162,19): warning C4244:  'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\QuatermignonGL\scene.cpp(209,31): warning C4305:  'argument' : troncation de 'double' à 'GLfloat'
+﻿  Cube.cpp
   QuatermignonGL.vcxproj -> C:\Users\brete\OneDrive\Documents\projects\esgi3\Solution OpenGL3A\Debug\QuatermignonGL.exe
