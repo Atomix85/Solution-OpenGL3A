@@ -2,6 +2,7 @@
 #include "Quaternion.h"
 #include "Camera.h"
 #include <math.h>
+#include "Cube.h"
 
 #define M_PI 3.14159265359
 
@@ -117,6 +118,9 @@ void Initialize(void)
 	distance = 5;
 	yaw = pitch = .0;
 
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
 }
 
 void Shutdown(void)
@@ -141,10 +145,30 @@ void Update(void)
 	Render();
 }
 
+void drawRepere(int size) {
+
+	glColor3f(1.0f, 0.0, 0.0);
+	for (int i = -size; i <= size; i++) {
+		glBegin(GL_LINES);
+		glVertex3f(i, 0, -size - 1);
+		glVertex3f(i, 0, size + 1);
+		glEnd();
+	}
+
+	glColor3f(0.0f, 1.0, 0.0);
+	for (int i = -size; i <= size; i++) {
+		glBegin(GL_LINES);
+		glVertex3f(-size - 1, 0, i);
+		glVertex3f(size + 1, 0, i);
+		glEnd();
+	}
+
+}
+
 void Render(void)
 {
     glMatrixMode(GL_MODELVIEW);
-    glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
 	gluLookAt(
@@ -152,13 +176,14 @@ void Render(void)
 		distance * cos(pitch) * sin(yaw),
 		distance* sin(pitch),
 		0, 
-		0, 
+		1, 
 		0, 
 		0.0f,
 		1.0f,
 		0.0f);
 
-	//glTranslatef(0, 0, -zoom);
+
+	
 
     glutTimerFunc(10, computePos, 0);
 
@@ -172,17 +197,41 @@ void Render(void)
     glutPassiveMotionFunc(mouseMove);
 
 
+	
+
+	glPushMatrix();
+
+	drawRepere(30);
+
+	glTranslatef(0, 1, 0);
+
     // #Fee9fc color is the most beautifule pink in the world.
     glColor3f(0.99, 0.87, 0.97);
 
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
-    // draw a fucking cube.
-    glutSolidCube(size);
+
+	Quaternion identity(0, 1, 0, 0);
+	Cube cubePrincipal(0,0,0, identity);
+
+	cubePrincipal.draw();
+
+
+	/*
+	glTranslatef(0, -1.0, 0.0);
+	glScalef(30.0, .1f, 30.0);
+	
+	glColor3f(0.5f, 0.5f, 0.5f);
+	glutSolidCube(1);
+	*/
+
+	glPopMatrix();
+
     // Flush buffers to screen
     glFlush();
 
 
 
 }
+
 
