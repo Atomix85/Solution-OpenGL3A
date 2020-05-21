@@ -211,7 +211,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion q(60, 0, 1, 0);
+	Quaternion q(45, 1, 1, 0);
 	Cube cubePrincipal(0,0,0, q);
 
 	cubePrincipal.draw();

@@ -67,7 +67,7 @@ void Cube::draw()
 
 	free(matrix);
 
-	glutSolidCube(1.0f);
+	this->solidColoredCube();
 
 	//HELPER
 	glColor3f(1.0, 0.0, 0.0);
