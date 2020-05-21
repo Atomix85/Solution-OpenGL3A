@@ -8,6 +8,7 @@
 
 /** GLOBALS **/
 GLfloat yaw, pitch;
+GLfloat xAngle, yAngle, zAngle;
 GLfloat distance = 10;
 GLdouble size = 1.5;
 const GLint zoom = -8;
@@ -140,6 +141,9 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
+    xAngle += 0.001;
+    yAngle += 0.001;
+    zAngle += 0.001;
 	if (isRunning == 0)
 		glutLeaveMainLoop();
 	Render();
@@ -211,8 +215,10 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion q(45, 1, 1, 0);
-	Cube cubePrincipal(0,0,0, q);
+	Quaternion rotX(xAngle, 1.0, 0.0, 0.0);
+	Quaternion rotY(yAngle, 0.0, 1.0, 0.0);
+	Quaternion rotZ(zAngle, 0.0, 0.0, 1.0);
+	Cube cubePrincipal(0,0,0, rotX+rotY+rotZ);
 
 	cubePrincipal.draw();
 
