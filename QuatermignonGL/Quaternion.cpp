@@ -251,7 +251,8 @@ std::ostream& operator<<(std::ostream& os, Quaternion const& q)
 	os << "(" << q.a() << "," << q.b() << "," << q.c() << "," << q.d() << ")";
 	os << endl;
 	return os;
-}/*
+}
+/*
 int main() {
 	printf("\n======== TEST QUATERNION OVERLOADED OPERATORS ========\n\n");
 	printf("\n-- empty constructor\n\n");
