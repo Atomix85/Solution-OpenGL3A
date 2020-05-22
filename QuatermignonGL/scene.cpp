@@ -9,11 +9,13 @@
 /** GLOBALS **/
 GLfloat yaw, pitch;
 GLfloat xAngle, yAngle, zAngle;
-GLfloat distance = 10;
+GLfloat distance = 20;
 GLdouble size = 1.5;
 const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
+
+GLuint texture1;
 
 /** INPUTS MANAGER FUNCTIONS **/
 void KeyboardDown(unsigned char key, int xx, int yy)
@@ -93,13 +95,13 @@ void mouseMove(int x, int y)
 	
     // Rentres uniquement lors du clic
     cam->orienterCam(x, y);
-	pitch += (x - 350) * 0.001;
+	yaw += (x - 350) * 0.005;
 	
 	 
-	GLfloat yawDif = (y - 350) * 0.001f;
+	GLfloat pitchDif = (y - 350) * 0.005f;
 
-	if(yaw + yawDif > -M_PI/4 && yaw + yawDif < M_PI / 4)
-		yaw += yawDif;
+	if(pitch + pitchDif >= -M_PI/2 && pitch + pitchDif < M_PI / 2)
+		pitch += pitchDif;
 	glutWarpPointer(350, 350);
 }
 void mouseButton(int button, int state, int x, int y){ cam->grabCam(x, y); }
@@ -116,11 +118,14 @@ void computePos(int osef)
 void Initialize(void)
 {
     glutSetCursor(GLUT_CURSOR_NONE);
-	distance = 5;
+	distance = 10;
 	yaw = pitch = .0;
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	//texture1 = loadTexture("stainedglass05.jpg");
+
 
 }
 
@@ -151,7 +156,7 @@ void Update(void)
 
 void drawRepere(int size) {
 
-	glColor3f(1.0f, 0.0, 0.0);
+	glColor3f(0.5f, 0.0, 0.0);
 	for (int i = -size; i <= size; i++) {
 		glBegin(GL_LINES);
 		glVertex3f(i, 0, -size - 1);
@@ -159,7 +164,7 @@ void drawRepere(int size) {
 		glEnd();
 	}
 
-	glColor3f(0.0f, 1.0, 0.0);
+	glColor3f(0.0f, 0.5, 0.0);
 	for (int i = -size; i <= size; i++) {
 		glBegin(GL_LINES);
 		glVertex3f(-size - 1, 0, i);
@@ -177,8 +182,8 @@ void Render(void)
 
 	gluLookAt(
 		distance * cos(pitch) * cos(yaw),
+		distance * sin(pitch),
 		distance * cos(pitch) * sin(yaw),
-		distance* sin(pitch),
 		0, 
 		1, 
 		0, 
@@ -205,7 +210,7 @@ void Render(void)
 
 	glPushMatrix();
 
-	drawRepere(30);
+	drawRepere(10);
 
 	glTranslatef(0, 1, 0);
 

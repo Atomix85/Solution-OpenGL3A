@@ -149,7 +149,7 @@ Quaternion Quaternion::conjugate()
 GLfloat Quaternion::norm() const
 {
 	GLfloat sum = 0;
-	for (int i = 0; i < 3; i++) { sum += _axis[i]* _axis[i]; }
+	for (int i = 0; i < 4; i++) { sum += _axis[i]* _axis[i]; }
 	return sqrt(sum);
 }
 
