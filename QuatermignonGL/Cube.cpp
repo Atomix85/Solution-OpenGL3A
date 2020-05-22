@@ -1,7 +1,7 @@
 #include "Cube.h"
 
 Cube::Cube(float x, float y, float z, Quaternion rotation)
-	: _x(x), _y(y), _z(z), _rotation(rotation)
+	: _x(x), _y(y), _z(z), rotation(rotation)
 {
 
 }
@@ -57,10 +57,8 @@ void Cube::solidColoredCube()
 void Cube::draw()
 {
 	GLfloat* matrix;
-	//GLfloat matrixIdentity[] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
 	glPushMatrix();
-	//glLoadIdentity();
-	matrix = _rotation.quaternion2Matrix();
+	matrix = rotation.quaternion2Matrix();
 
 	glMultMatrixf(matrix);
 	//glMultMatrixf(matrixIdentity);

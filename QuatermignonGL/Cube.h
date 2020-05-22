@@ -6,10 +6,11 @@ class Cube
 {
 private:
 	float _x, _y, _z;
-	Quaternion _rotation;
+	GLfloat* coord;
 public:
 	Cube(float x, float y, float z, Quaternion rotation);
 	void solidColoredCube();
 	void draw();
+	Quaternion rotation;
 };
 

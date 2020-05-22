@@ -15,6 +15,7 @@ const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
 
+Cube cubePrincipal(0, 0, 0, Quaternion(deg2Rad(theta), 0.0, 1.0, 0));
 GLuint texture1;
 
 GLfloat deg2Rad(GLfloat angle) {
@@ -150,7 +151,8 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
-    theta += 0.5;
+    theta += 0.01;
+    
 
 	if (isRunning == 0)
 		glutLeaveMainLoop();
@@ -211,7 +213,7 @@ void Render(void)
 	glPushMatrix();
 
 	drawRepere(10);
-
+    cubePrincipal.rotation *= Quaternion(deg2Rad(theta), 0.0, 1.0, 0);
 	glTranslatef(0, 1, 0);
 
     // #Fee9fc color is the most beautiful pink in the world.
@@ -220,10 +222,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
-
-	Cube cubePrincipal(0,0,0, rot);
-
+ 
 	cubePrincipal.draw();
 
 
