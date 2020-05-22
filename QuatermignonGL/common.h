@@ -38,6 +38,7 @@ extern void SpecialDown(int key, int xx, int yy);
 extern void SpecialUp(int key, int xx, int yy);
 extern void mouseMove(int x, int y);
 extern void computePos(int inutile);
+extern GLfloat deg2Rad(GLfloat angleInDegree);
 
 
 #endif // OPENGL_INITIATION_COMMON_H

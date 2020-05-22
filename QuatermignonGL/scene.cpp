@@ -17,6 +17,10 @@ int isRunning = 1;
 
 GLuint texture1;
 
+GLfloat deg2Rad(GLfloat angle) {
+    return angle/ 180 * M_PI;
+}
+
 /** INPUTS MANAGER FUNCTIONS **/
 void KeyboardDown(unsigned char key, int xx, int yy)
 {
@@ -146,7 +150,7 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
-    theta += 0.001;
+    theta += 0.5;
 
 	if (isRunning == 0)
 		glutLeaveMainLoop();
@@ -216,7 +220,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rot(theta, 0.0, 1.0, 0);
+	Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
 
 	Cube cubePrincipal(0,0,0, rot);
 
