@@ -215,10 +215,11 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rotX(xAngle, 1.0, 0.0, 0.0);
-	Quaternion rotY(yAngle, 0.0, 1.0, 0.0);
-	Quaternion rotZ(zAngle, 0.0, 0.0, 1.0);
-	Cube cubePrincipal(0,0,0, rotX+rotY+rotZ);
+	Quaternion rotX(xAngle, 1.0, 2.0, 3.0);
+    //Quaternion rotY(yAngle, 0.0, 1.0, 0.0);
+	//Quaternion rotZ(zAngle, 0.0, 0.0, 1.0);
+
+	Cube cubePrincipal(0,0,0, rotX);
 
 	cubePrincipal.draw();
 
