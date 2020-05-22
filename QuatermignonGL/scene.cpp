@@ -216,7 +216,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rot(theta, 2.0, 3.0, 4.0);
+	Quaternion rot(theta, 0.0, 1.0, 0);
 
 	Cube cubePrincipal(0,0,0, rot);
 
