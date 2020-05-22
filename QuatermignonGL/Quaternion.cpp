@@ -5,32 +5,31 @@ using namespace std;
 
 Quaternion::Quaternion()
 {
-	_angle = 0.0;
-	_axis = (GLfloat*) calloc(3,sizeof(GLfloat));
+	_axis = (GLfloat*) calloc(4,sizeof(GLfloat));
 	if (!_axis) throw ("Unable to allocate memory");
 }
 
-Quaternion::Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+Quaternion::Quaternion(GLfloat theta, GLfloat x, GLfloat y, GLfloat z)
 {
-	_angle = a;
-	_axis = (GLfloat*) malloc(3*sizeof(GLfloat));
+	_axis = (GLfloat*) malloc(4*sizeof(GLfloat));
 	if (!_axis) throw ("Unable to allocate memory");
 	else {
-		_axis[0] = b;
-		_axis[1] = c;
-		_axis[2] = d;
+		_axis[0] = cos(theta/2.0);
+		_axis[1] = x * sin(theta / 2.0);
+		_axis[2] = y * sin(theta / 2.0);
+		_axis[3] = z * sin(theta / 2.0);
 	}
 }
 
 Quaternion::Quaternion(Quaternion const& q)
 {
-	_angle = q.a();
-	_axis = (GLfloat*)malloc(3 * sizeof(GLfloat));
+	_axis = (GLfloat*)malloc(4 * sizeof(GLfloat));
 	if (!_axis) throw ("Unable to allocate memory");
 	else {
-		_axis[0] = q.b();
-		_axis[1] = q.c();
-		_axis[2] = q.d();
+		_axis[0] = q.a();
+		_axis[1] = q.b();
+		_axis[2] = q.c();
+		_axis[3] = q.d();
 	}
 }
 
@@ -55,10 +54,10 @@ bool Quaternion::operator!=(Quaternion const&q)
 Quaternion& Quaternion::operator=(const Quaternion& q)
 {
 	if (this == &q) return *this;
-	this->_angle   = q.a();
-	this->_axis[0] = q.b();
-	this->_axis[1] = q.c();
-	this->_axis[2] = q.d();
+	this->_axis[0] = q.a();
+	this->_axis[1] = q.b();
+	this->_axis[2] = q.c();
+	this->_axis[3] = q.d();
 	return *this;
 }
 
@@ -123,22 +122,22 @@ Quaternion Quaternion::operator/=(Quaternion const& q)
 
 GLfloat Quaternion::a() const
 {
-	return _angle;
+	return _axis[0];
 }
 
 GLfloat Quaternion::b() const
 {
-	return _axis[0];
+	return _axis[1];
 }
 
 GLfloat Quaternion::c() const
 {
-	return _axis[1];
+	return _axis[2];
 }
 
 GLfloat Quaternion::d() const
 {
-	return _axis[2];
+	return _axis[3];
 }
 
 Quaternion Quaternion::conjugate()
@@ -148,22 +147,19 @@ Quaternion Quaternion::conjugate()
 
 GLfloat Quaternion::norm() const
 {
-	GLfloat sum = _angle*_angle;
-	for (int i = 0; i < 3; i++) { sum += _axis[i] * _axis[i]; }
+	GLfloat sum = 0;
+	for (int i = 0; i < 4; i++) { sum += _axis[i] * _axis[i]; }
 	return sqrt(sum);
 }
 
 void Quaternion::normalize()
 {
 	GLfloat norm = this->norm();
-	_angle /= norm;
-	for (int i = 0; i < 3; i++) { _axis[i] /= norm; }
+	for (int i = 0; i < 4; i++) { _axis[i] /= norm; }
 }
 
 Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
 {
-	
-	
 	GLfloat trace = m[0] + m[5] + m[10];
 	GLfloat S, X, Y, Z, W;
 

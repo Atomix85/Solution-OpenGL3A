@@ -7,7 +7,6 @@
 class Quaternion
 {
 private:
-	GLfloat _angle;
 	GLfloat*_axis;
 
 public:

@@ -8,7 +8,7 @@
 
 /** GLOBALS **/
 GLfloat yaw, pitch;
-GLfloat xAngle, yAngle, zAngle;
+GLfloat theta = 0;
 GLfloat distance = 20;
 GLdouble size = 1.5;
 const GLint zoom = -8;
@@ -146,9 +146,8 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
-    xAngle += 0.001;
-    yAngle += 0.001;
-    zAngle += 0.001;
+    theta += 0.001;
+
 	if (isRunning == 0)
 		glutLeaveMainLoop();
 	Render();
@@ -211,26 +210,19 @@ void Render(void)
 
 	glTranslatef(0, 1, 0);
 
-    // #Fee9fc color is the most beautifule pink in the world.
+    // #Fee9fc color is the most beautiful pink in the world.
     glColor3f(0.99, 0.87, 0.97);
 
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rotX(xAngle, 1.0, 0.0, 0.0);
+	Quaternion rot(theta, 2.0, 3.0, 4.0);
 
-	Cube cubePrincipal(0,0,0, rotX);
+	Cube cubePrincipal(0,0,0, rot);
 
 	cubePrincipal.draw();
 
 
-	/*
-	glTranslatef(0, -1.0, 0.0);
-	glScalef(30.0, .1f, 30.0);
-	
-	glColor3f(0.5f, 0.5f, 0.5f);
-	glutSolidCube(1);
-	*/
 
 	glPopMatrix();
 
