@@ -148,15 +148,16 @@ Quaternion Quaternion::conjugate()
 
 GLfloat Quaternion::norm() const
 {
-	GLfloat sum = 0;
-	for (int i = 0; i < 3; i++) { sum += _axis[i]* _axis[i]; }
+	GLfloat sum = _angle*_angle;
+	for (int i = 0; i < 3; i++) { sum += _axis[i] * _axis[i]; }
 	return sqrt(sum);
 }
 
 void Quaternion::normalize()
 {
 	GLfloat norm = this->norm();
-	for (int i = 0; i < 3; i++) { _axis[i] = _axis[i] / norm; }
+	_angle /= norm;
+	for (int i = 0; i < 3; i++) { _axis[i] /= norm; }
 }
 
 Quaternion Quaternion::matrix2Quaternion(GLfloat* const& m)
