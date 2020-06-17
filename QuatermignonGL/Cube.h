@@ -15,10 +15,12 @@ private:
 	GLuint _shader;
 	unsigned int vaoID[1];
 	unsigned int vboID[1];
+	GLfloat* coord;
 public:
 	Cube(float x, float y, float z, Quaternion rotation);
 	GLuint LoadTexture(const char* filename);
 	void solidColoredCube();
 	void draw();
+	Quaternion rotation;
 };
 

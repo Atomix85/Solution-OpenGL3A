@@ -154,7 +154,8 @@ void Reshape(int x, int y)
 
 void Update(void)
 {
-    theta += 0.5;
+    theta += 0.01;
+    
 
 	if (isRunning == 0)
 		glutLeaveMainLoop();
@@ -215,7 +216,7 @@ void Render(void)
 	glPushMatrix();
 
 	drawRepere(10);
-
+    cube->rotation *= Quaternion(deg2Rad(theta), 0.0, 1.0, 0);
 	glTranslatef(0, 1, 0);
 
     // #Fee9fc color is the most beautiful pink in the world.
