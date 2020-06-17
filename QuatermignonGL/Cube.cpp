@@ -3,22 +3,23 @@
 Cube::Cube(float x, float y, float z, Quaternion rotation)
 	: _x(x), _y(y), _z(z), _rotation(rotation)
 {
-
+	_shader = LoadShaders("tex.v","tex.f");
+	_texture = LoadTexture("Explosif.bmp");
 }
 
 void Cube::solidColoredCube()
 {
 
-	GLfloat coord[] =
+	GLfloat coord[8][3] =
 	{
-		-0.5,-0.5,-0.5,
-		0.5,-0.5,-0.5,
-		0.5,0.5,-0.5,
-		-0.5,0.5,-0.5,
-		-0.5,-0.5,0.5,
-		0.5,-0.5,0.5,
-		0.5,0.5,0.5,
-		-0.5,0.5,0.5
+		{-0.5,-0.5,-0.5},
+		{0.5,-0.5,-0.5 },
+		{0.5, 0.5, -0.5},
+		{-0.5,0.5,-0.5},
+		{-0.5,-0.5,0.5},
+		{0.5,-0.5,0.5},
+		{0.5,0.5,0.5},
+		{-0.5,0.5,0.5}
 	};
 
 	GLfloat color[6][3] =
@@ -40,20 +41,71 @@ void Cube::solidColoredCube()
 	{2,6,7,3}
 	};
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, coord);
+	glUseProgram(_shader);
+
+	glEnable(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _texture);
+
+
+	float modelview[16];
+	float proj[16];
+	glGetFloatv(GL_PROJECTION_MATRIX, proj);
+	glGetFloatv(GL_MODELVIEW_MATRIX, modelview);
+
+	glUniformMatrix4fv(glGetUniformLocation(_shader, "projection"), 1, GL_FALSE, proj);
+	glUniformMatrix4fv(glGetUniformLocation(_shader, "modelview"), 1, GL_FALSE, modelview);
+
+
+	int texcoord_index = glGetAttribLocation(_shader, "in_coord");
 
 	for (int x = 0; x != 6; x++)
 	{
-		glBegin(GL_QUADS);
-		glColor3f(color[x][0], color[x][1], color[x][2]);        
-		for (int i = 0; i != 4; ++i)
-			glArrayElement(num[x][i]);
+		//glColor3f(color[x][0], color[x][1], color[x][2]);
+		glBegin(GL_QUADS);  
+			glVertex3fv(coord[num[x][0]]);
+			glVertexAttrib2f(texcoord_index,0, 0);
+			glVertex3fv(coord[num[x][1]]);
+			glVertexAttrib2f(texcoord_index, 0, 1);
+			glVertex3fv(coord[num[x][2]]);
+			glVertexAttrib2f(texcoord_index, 1, 1);
+			glVertex3fv(coord[num[x][3]]);
+			glVertexAttrib2f(texcoord_index, 1, 0);
 		glEnd();
 	}
 
-}
+	glBindTexture(GL_TEXTURE_2D, 0);
 
+	glUseProgram(0);
+}
+GLuint Cube::LoadTexture(const char* filename)
+{
+	GLuint texture;
+	
+	unsigned char* bitmapData;
+	BMP::INFOHEADER infoheader;
+
+	bitmapData = BMP::LoadBitmapFile(filename, &infoheader);
+
+	if (bitmapData != NULL) {
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, infoheader.width, infoheader.height, 0, GL_RGB, GL_UNSIGNED_BYTE, bitmapData);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		free(bitmapData);
+		return texture;
+	}
+	else {
+		return 0;
+	}
+	
+}
 void Cube::draw()
 {
 	GLfloat* matrix;

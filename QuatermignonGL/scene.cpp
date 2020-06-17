@@ -15,6 +15,11 @@ const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
 
+
+
+Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
+Cube* cube;
+
 GLuint texture1;
 
 GLfloat deg2Rad(GLfloat angle) {
@@ -127,15 +132,14 @@ void Initialize(void)
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+	glEnable(GL_TEXTURE_2D);
 
-	//texture1 = loadTexture("stainedglass05.jpg");
-
-
+	cube = new Cube(0, 0, 0, rot);
 }
 
 void Shutdown(void)
 {
-
+	delete cube;
 }
 
 void Reshape(int x, int y)
@@ -220,11 +224,7 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
-
-	Cube cubePrincipal(0,0,0, rot);
-
-	cubePrincipal.draw();
+	cube->draw();
 
 
 
