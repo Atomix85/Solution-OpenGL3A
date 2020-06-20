@@ -6,6 +6,7 @@
 // Entrée
 
 in vec2 coordTexture;
+//int vec3 normal;
 in vec4 position;
 
 // Uniform
@@ -19,6 +20,7 @@ out vec4 out_Color;
 
 
 // Fonction main
+
 
 void main()
 {

@@ -75,7 +75,6 @@ void Cube::solidColoredCube()
 	}
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-
 	glUseProgram(0);
 }
 GLuint Cube::LoadTexture(const char* filename)
@@ -119,6 +118,7 @@ void Cube::draw()
 
 	this->solidColoredCube();
 
+	glDisable(GL_TEXTURE_2D);
 	//HELPER
 	glColor3f(1.0, 0.0, 0.0);
 	glBegin(GL_LINES);
