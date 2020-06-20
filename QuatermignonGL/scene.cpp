@@ -18,7 +18,7 @@ int isRunning = 1;
 
 
 Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
-Cube* cube;
+Cube* cube, *skybox;
 
 GLuint texture1;
 
@@ -134,12 +134,13 @@ void Initialize(void)
 	glDepthFunc(GL_LESS);
 	glEnable(GL_TEXTURE_2D);
 
-	cube = new Cube(0, 0, 0, rot);
+	cube = new Cube(0, 0, 0, 0.5f, rot, "Explosif.bmp", "tex" );
+	skybox = new Cube(0, 0, 0, 50.0f, rot, "", "skybox");
 }
 
 void Shutdown(void)
 {
-	delete cube;
+	delete cube, skybox;
 }
 
 void Reshape(int x, int y)
@@ -225,7 +226,8 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	cube->draw();
+	cube->draw(1);
+	skybox->draw(0);
 
 
 

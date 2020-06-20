@@ -1,10 +1,13 @@
 #include "Cube.h"
 
-Cube::Cube(float x, float y, float z, Quaternion rotation)
-	: _x(x), _y(y), _z(z), rotation(rotation)
+Cube::Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader)
+	: _x(x), _y(y), _z(z),_size(size), rotation(rotation)
 {
-	_shader = LoadShaders("tex.v","tex.f");
-	_texture = LoadTexture("Explosif.bmp");
+	_shader = LoadShaders((shader + ".v").c_str(),(shader+".f").c_str());
+	if (tex != "")
+		_texture = LoadTexture(tex.c_str());
+	else
+		_texture = 0;
 }
 
 void Cube::solidColoredCube()
@@ -12,14 +15,14 @@ void Cube::solidColoredCube()
 
 	GLfloat coord[8][3] =
 	{
-		{-0.5,-0.5,-0.5},
-		{0.5,-0.5,-0.5 },
-		{0.5, 0.5, -0.5},
-		{-0.5,0.5,-0.5},
-		{-0.5,-0.5,0.5},
-		{0.5,-0.5,0.5},
-		{0.5,0.5,0.5},
-		{-0.5,0.5,0.5}
+		{-_size,-_size,-_size},
+		{_size,-_size,-_size },
+		{_size, _size, -_size},
+		{-_size,_size,-_size},
+		{-_size,-_size,_size},
+		{_size,-_size,_size},
+		{_size,_size,_size},
+		{-_size,_size,_size}
 	};
 
 	GLfloat color[6][3] =
@@ -44,8 +47,10 @@ void Cube::solidColoredCube()
 	glUseProgram(_shader);
 
 	glEnable(GL_TEXTURE_2D);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _texture);
+	if (_texture != 0) {
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, _texture);
+	}
 
 
 	float modelview[16];
@@ -105,7 +110,7 @@ GLuint Cube::LoadTexture(const char* filename)
 	}
 	
 }
-void Cube::draw()
+void Cube::draw(int repere)
 {
 	GLfloat* matrix;
 	glPushMatrix();
@@ -119,6 +124,8 @@ void Cube::draw()
 	this->solidColoredCube();
 
 	glDisable(GL_TEXTURE_2D);
+
+	if(repere == 1){
 	//HELPER
 	glColor3f(1.0, 0.0, 0.0);
 	glBegin(GL_LINES);
@@ -137,6 +144,7 @@ void Cube::draw()
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 0, 2);
 	glEnd();
+	}
 
 	glPopMatrix();
 
