@@ -17,7 +17,7 @@ public:
 	Quaternion(GLfloat a, GLfloat b, GLfloat c, GLfloat d);
 	// deep copy constructor
 	Quaternion(Quaternion const& copy);
-	// destructor
+	// Destructor 
 	~Quaternion();
 
 	bool operator==(Quaternion const&);
