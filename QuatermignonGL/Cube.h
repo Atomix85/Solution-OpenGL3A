@@ -18,11 +18,15 @@ private:
 	unsigned int vaoID[1];
 	unsigned int vboID[1];
 	GLfloat* coord;
+	GLfloat* modelviewMat;
+
 public:
 	Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader);
+	~Cube();
 	GLuint LoadTexture(const char* filename);
 	void solidColoredCube();
 	void draw(int repere);
 	Quaternion rotation;
+	void rotate(Quaternion);
 };
 

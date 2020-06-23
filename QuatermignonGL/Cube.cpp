@@ -8,6 +8,13 @@ Cube::Cube(float x, float y, float z, float size, Quaternion rotation, std::stri
 		_texture = LoadTexture(tex.c_str());
 	else
 		_texture = 0;
+	modelviewMat = (GLfloat*) calloc(16,sizeof(GLfloat));
+	modelviewMat[0] = modelviewMat[5] = modelviewMat[10] = modelviewMat[15] = 1;
+}
+
+Cube::~Cube()
+{
+	free(modelviewMat);
 }
 
 void Cube::solidColoredCube()
@@ -112,14 +119,14 @@ GLuint Cube::LoadTexture(const char* filename)
 }
 void Cube::draw(int repere)
 {
-	GLfloat* matrix;
+	//GLfloat* matrix;
 	glPushMatrix();
-	matrix = rotation.quaternion2Matrix();
+	//matrix = rotation.quaternion2Matrix();
 
-	glMultMatrixf(matrix);
+	glMultMatrixf(modelviewMat);
 	//glMultMatrixf(matrixIdentity);
 
-	free(matrix);
+	//free(matrix);
 
 	this->solidColoredCube();
 
@@ -147,5 +154,18 @@ void Cube::draw(int repere)
 	}
 
 	glPopMatrix();
+
+}
+
+void Cube::rotate( Quaternion q)
+{
+	GLfloat* matrix = q.quaternion2Matrix();
+	glPushMatrix();
+	glLoadMatrixf(modelviewMat);
+	glMultMatrixf(matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, modelviewMat);
+	glPopMatrix();
+
+
 
 }
