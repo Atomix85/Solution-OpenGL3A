@@ -1,9 +1,9 @@
-﻿// Version du GLSL
+// Version du GLSL
 // commentaire
 #version 330 core
 
 
-// Entrée
+// Entr�e
 
 in vec2 coordTexture;
 //int vec3 normal;
@@ -50,15 +50,15 @@ void main()
 {
     // Couleur du pixel
 
-	float noiseV = noise(position.xyz*3);
+    float noiseV = noise(position.xyz*3);
 
-	if(noiseV >= 0.025f){
-		noiseV = 0f;
-	}else{
-		noiseV = 1f;
-	}
+    if(noiseV >= 0.025){
+        noiseV = 0;
+    }else{
+        noiseV = 1;
+    }
 
-	vec4 tex = vec4(1.0,1.0,1.0,0.5) * noiseV ;
-	
+    vec4 tex = vec4(1.0,1.0,1.0,0.5) * noiseV ;
+    
     out_Color = tex;
 }
