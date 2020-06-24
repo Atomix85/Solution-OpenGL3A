@@ -1,7 +1,7 @@
 #include "Cube.h"
 
-Cube::Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj)
-	: _x(x), _y(y), _z(z),_size(size), rotation(rotation)
+Cube::Cube(float x, float y, float z, float rotb, float rotc, float rotd, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj)
+	: _x(x), _y(y), _z(z), _rotB(rotb), _rotC(rotc),_rotD(rotd), _size(size), rotation(rotation)
 {
 	_shader = LoadShaders((shader + ".v").c_str(),(shader+".f").c_str());
 	if (tex != "")
@@ -147,7 +147,7 @@ void Cube::draw(int repere)
 
 	glPushMatrix();
 
-	//glTranslatef(5,2,0);
+	glTranslatef(_x,_y,_z);
 
 
 	this->solidColoredCube();
@@ -192,4 +192,19 @@ void Cube::rotate( Quaternion q)
 
 
 
+}
+
+
+GLfloat Cube::rotb() const
+{
+	return _rotB;
+}
+
+GLfloat Cube::rotc() const
+{
+	return _rotC;
+}
+GLfloat Cube::rotd() const
+{
+	return _rotD;
 }

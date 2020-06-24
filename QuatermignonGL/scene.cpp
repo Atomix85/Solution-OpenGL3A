@@ -15,7 +15,8 @@ const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
 int oldTimeSinceStart = 0;
-
+const int sizeObjects = 2;
+Cube* objects[sizeObjects];
 
 
 Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
@@ -134,9 +135,12 @@ void Initialize(void)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_TEXTURE_2D);
+    //(Cube**)malloc(sizeof(Cube*) * 2);
 
-	cube = new Cube(0, 0, 0, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
-	skybox = new Cube(0, 0, 0, 50.0f, rot, "", "skybox", "");
+    objects[0] = new Cube(0, 0, 0, 1,0,1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[1] = new Cube(2, 0, 2,0,1,0, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
+	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
+	skybox = new Cube(0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
 
 void Shutdown(void)
@@ -160,8 +164,14 @@ void Update(void)
     int deltaTime = timeSinceStart - oldTimeSinceStart;
     oldTimeSinceStart = timeSinceStart;
 
+
     theta += 0.0001 * deltaTime;
-    
+    for (int i = 0; i < sizeObjects; i++)
+    {
+        objects[i]->rotate(Quaternion(deg2Rad(theta), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+        //objects[i]->rotate(Quaternion(deg2Rad(theta), 1, 0, 1));
+    }
+    //cube->rotate(Quaternion(deg2Rad(theta), cube->rotation.b, cube->rotation.c, cube->rotation.d));
 
 	if (isRunning == 0)
 		glutLeaveMainLoop();
@@ -223,7 +233,6 @@ void Render(void)
 
 	drawRepere(10);
    // cube->rotation *= Quaternion(deg2Rad(theta), 0.0, 1.0, 0);
-    cube->rotate(Quaternion(deg2Rad(theta), 0.0, 1.0, 0));
 	glTranslatef(0, 1, 0);
 
     // #Fee9fc color is the most beautiful pink in the world.
@@ -232,7 +241,10 @@ void Render(void)
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	cube->draw(1);
+    for (int i = 0; i < sizeObjects; i++)
+    {
+        objects[i]->draw(0);
+    }
 	skybox->draw(0);
 
 
