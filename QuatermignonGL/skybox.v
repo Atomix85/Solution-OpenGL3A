@@ -7,7 +7,6 @@
 
 in vec3 in_Vertex;
 in vec2 in_coord;
-//in vec3 in_normal;
 
 
 // Uniform
@@ -20,7 +19,6 @@ uniform mat4 modelview;
 
 out vec2 coordTexture;
 out vec4 position;
-out vec3 normal;
 
 // Fonction main
 

@@ -67,8 +67,6 @@ void Cube::solidColoredCube()
 
 	glUniformMatrix4fv(glGetUniformLocation(_shader, "projection"), 1, GL_FALSE, proj);
 	glUniformMatrix4fv(glGetUniformLocation(_shader, "modelview"), 1, GL_FALSE, modelview);
-
-
 	int texcoord_index = glGetAttribLocation(_shader, "in_coord");
 
 	for (int x = 0; x != 6; x++)
@@ -119,16 +117,18 @@ GLuint Cube::LoadTexture(const char* filename)
 }
 void Cube::draw(int repere)
 {
-	//GLfloat* matrix;
 	glPushMatrix();
-	//matrix = rotation.quaternion2Matrix();
 
 	glMultMatrixf(modelviewMat);
-	//glMultMatrixf(matrixIdentity);
 
-	//free(matrix);
+	glPushMatrix();
+
+	glTranslatef(5,2,0);
+
 
 	this->solidColoredCube();
+
+	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
 
