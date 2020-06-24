@@ -1,14 +1,14 @@
 ﻿  scene.cpp
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(27,23): warning C4244: 'return' : conversion de 'double' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(108,26): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(163,33): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(176,26): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(176,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(177,25): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(177,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(184,28): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(184,20): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(185,27): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(185,19): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-D:\Dev\ESG_Maths\S2\QuatermignonGL\QuatermignonGL\scene.cpp(230,31): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
-  QuatermignonGL.vcxproj -> D:\Dev\ESG_Maths\S2\QuatermignonGL\Debug\QuatermignonGL.exe
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(27,23): warning C4244: 'return' : conversion de 'double' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(108,26): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(163,32): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(176,26): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(176,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(177,25): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(177,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(184,28): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(184,20): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(185,27): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(185,19): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(230,31): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
+  QuatermignonGL.vcxproj -> E:\openglproj\Solution-OpenGL3A\Debug\QuatermignonGL.exe

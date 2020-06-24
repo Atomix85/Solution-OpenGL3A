@@ -6,6 +6,9 @@
 #include "shader.hpp"
 #include "BMP.h"
 #include <string>
+#include "objloader.hpp"
+#include "Vector.hpp"
+#include <vector>
 
 class Cube
 {
@@ -15,13 +18,14 @@ private:
 	Quaternion _rotation;
 	GLuint _texture;
 	GLuint _shader;
-	unsigned int vaoID[1];
-	unsigned int vboID[1];
 	GLfloat* coord;
 	GLfloat* modelviewMat;
+	std::vector<vec3> out_vertices;
+	std::vector<vec2> out_uvs;
+	std::vector<vec3> out_normals;
 
 public:
-	Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader);
+	Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj);
 	~Cube();
 	GLuint LoadTexture(const char* filename);
 	void solidColoredCube();

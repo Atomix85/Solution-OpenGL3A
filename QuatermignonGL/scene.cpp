@@ -135,8 +135,8 @@ void Initialize(void)
 	glDepthFunc(GL_LESS);
 	glEnable(GL_TEXTURE_2D);
 
-	cube = new Cube(0, 0, 0, 0.5f, rot, "Explosif.bmp", "tex" );
-	skybox = new Cube(0, 0, 0, 50.0f, rot, "", "skybox");
+	cube = new Cube(0, 0, 0, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
+	skybox = new Cube(0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
 
 void Shutdown(void)
