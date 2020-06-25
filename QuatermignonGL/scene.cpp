@@ -15,7 +15,7 @@ const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
 int oldTimeSinceStart = 0;
-const int sizeObjects = 2;
+const int sizeObjects = 5;
 Cube* objects[sizeObjects];
 
 
@@ -137,7 +137,7 @@ void Initialize(void)
 	glEnable(GL_TEXTURE_2D);
     //(Cube**)malloc(sizeof(Cube*) * 2);
 
-    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "sun.bmp", "tex", "sphere.obj");
     /*objects[1] = new Cube(0, 1, 1, 1, 0, 1, 0.7f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
     objects[2] = new Cube(1, 0, 1, 0, 0, 1, 0.5f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
     objects[3] = new Cube(3, 3, 3, 1, 1, 1, 0, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
@@ -145,6 +145,12 @@ void Initialize(void)
     objects[5] = new Cube(2, 0, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
     objects[6] = new Cube(0, 2, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");*/
     objects[1] = new Cube(2, 0, 2, 0, 1, 0, 4, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
+    //objects[2] = new Cube(1, 2, 3, 1, 0, 1, 4, 2, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "planet.obj");
+    objects[2] = new Cube(2, 1, 2, 0, 0, 1, 3, 2, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "mengerCube.obj");
+    objects[3] = new Cube(1, 1, 1, 0, 1, 0, 3, 0.4f, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "sphere.obj");
+    objects[4] = new Cube(10, 5, 10, 1, 1, 0, 5, 2, Quaternion(deg2Rad(0), 0, 1, 0), "Explosif.bmp", "tex", "");
+
+
 	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
 	skybox = new Cube(0, 0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
@@ -245,7 +251,7 @@ void Render(void)
 	glTranslatef(0, 1, 0);
 
     // #Fee9fc color is the most beautiful pink in the world.
-    glColor3f(0.99, 0.87, 0.97);
+    //glColor3f(0.99, 0.87, 0.97);
 
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
