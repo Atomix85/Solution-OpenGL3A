@@ -15,6 +15,7 @@ class Cube
 private:
 	float _x, _y, _z;
 	float _rotB, _rotC, _rotD;
+	float _theta;
 	float _size;
 	Quaternion _rotation;
 	GLuint _texture;
@@ -26,7 +27,7 @@ private:
 	std::vector<vec3> out_normals;
 
 public:
-	Cube(float x, float y, float z, float rotb, float rotc, float rotd, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj);
+	Cube(float x, float y, float z, float rotb, float rotc, float rotd, float theta, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj);
 	~Cube();
 	GLuint LoadTexture(const char* filename);
 	void solidColoredCube();
@@ -37,5 +38,6 @@ public:
 	GLfloat rotb() const;
 	GLfloat rotc() const;
 	GLfloat rotd() const;
+	GLfloat thetha() const;
 };
 

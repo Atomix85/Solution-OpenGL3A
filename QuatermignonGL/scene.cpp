@@ -137,10 +137,16 @@ void Initialize(void)
 	glEnable(GL_TEXTURE_2D);
     //(Cube**)malloc(sizeof(Cube*) * 2);
 
-    objects[0] = new Cube(0, 0, 0, 1,0,1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
-    objects[1] = new Cube(2, 0, 2,0,1,0, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
+    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    /*objects[1] = new Cube(0, 1, 1, 1, 0, 1, 0.7f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[2] = new Cube(1, 0, 1, 0, 0, 1, 0.5f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[3] = new Cube(3, 3, 3, 1, 1, 1, 0, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
+    objects[4] = new Cube(4, 4, 4, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[5] = new Cube(2, 0, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
+    objects[6] = new Cube(0, 2, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");*/
+    objects[1] = new Cube(2, 0, 2, 0, 1, 0, 4, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
 	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
-	skybox = new Cube(0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
+	skybox = new Cube(0, 0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
 
 void Shutdown(void)
@@ -168,8 +174,11 @@ void Update(void)
     theta += 0.0001 * deltaTime;
     for (int i = 0; i < sizeObjects; i++)
     {
-        objects[i]->rotate(Quaternion(deg2Rad(theta), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
-        //objects[i]->rotate(Quaternion(deg2Rad(theta), 1, 0, 1));
+        if (objects[i] != NULL);
+            objects[i]->rotate(Quaternion(deg2Rad(theta / objects[i]->thetha()), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+
+            //objects[i]->rotate(Quaternion(deg2Rad(theta), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+            //objects[i]->rotate(Quaternion(deg2Rad(theta), 1, 0, 1));
     }
     //cube->rotate(Quaternion(deg2Rad(theta), cube->rotation.b, cube->rotation.c, cube->rotation.d));
 
@@ -243,7 +252,8 @@ void Render(void)
 
     for (int i = 0; i < sizeObjects; i++)
     {
-        objects[i]->draw(0);
+        if(objects[i] != NULL)
+            objects[i]->draw(0);
     }
 	skybox->draw(0);
 

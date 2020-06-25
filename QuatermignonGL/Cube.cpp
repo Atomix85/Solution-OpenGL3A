@@ -1,7 +1,7 @@
 #include "Cube.h"
 
-Cube::Cube(float x, float y, float z, float rotb, float rotc, float rotd, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj)
-	: _x(x), _y(y), _z(z), _rotB(rotb), _rotC(rotc),_rotD(rotd), _size(size), rotation(rotation)
+Cube::Cube(float x, float y, float z, float rotb, float rotc, float rotd, float theta, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj)
+	: _x(x), _y(y), _z(z), _rotB(rotb), _rotC(rotc), _rotD(rotd), _theta(theta), _size(size), rotation(rotation)
 {
 	_shader = LoadShaders((shader + ".v").c_str(),(shader+".f").c_str());
 	if (tex != "")
@@ -207,4 +207,8 @@ GLfloat Cube::rotc() const
 GLfloat Cube::rotd() const
 {
 	return _rotD;
+}
+GLfloat Cube::thetha() const
+{
+	return _theta;
 }
