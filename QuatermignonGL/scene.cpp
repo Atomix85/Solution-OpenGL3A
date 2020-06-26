@@ -129,7 +129,7 @@ void computePos(int osef)
 void Initialize(void)
 {
     glutSetCursor(GLUT_CURSOR_NONE);
-	distance = 10;
+	distance = 30;
 	yaw = pitch = .0;
 
 	glEnable(GL_DEPTH_TEST);
@@ -137,18 +137,18 @@ void Initialize(void)
 	glEnable(GL_TEXTURE_2D);
     //(Cube**)malloc(sizeof(Cube*) * 2);
 
-    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "sun.bmp", "tex", "sphere.obj");
+    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 2, Quaternion(deg2Rad(0), 1, 0, 1), "Suntex.bmp", "tex", "sphere.obj");
     /*objects[1] = new Cube(0, 1, 1, 1, 0, 1, 0.7f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
     objects[2] = new Cube(1, 0, 1, 0, 0, 1, 0.5f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
     objects[3] = new Cube(3, 3, 3, 1, 1, 1, 0, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
     objects[4] = new Cube(4, 4, 4, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
     objects[5] = new Cube(2, 0, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
     objects[6] = new Cube(0, 2, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");*/
-    objects[1] = new Cube(2, 0, 2, 0, 1, 0, 4, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
+    objects[1] = new Cube(12, 0, 0, 0, 1, 0, -4, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
     //objects[2] = new Cube(1, 2, 3, 1, 0, 1, 4, 2, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "planet.obj");
-    objects[2] = new Cube(2, 1, 2, 0, 0, 1, 3, 2, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "mengerCube.obj");
-    objects[3] = new Cube(1, 1, 1, 0, 1, 0, 3, 0.4f, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "sphere.obj");
-    objects[4] = new Cube(10, 5, 10, 1, 1, 0, 5, 2, Quaternion(deg2Rad(0), 0, 1, 0), "Explosif.bmp", "tex", "");
+    objects[2] = new Cube(5, 0, 0, 0, 0, 1, 3, 1, Quaternion(deg2Rad(0), 1, 0, 1), "", "color", "mengerCube.obj");
+    objects[3] = new Cube(7, 0, 1, 0, 1, 0, 3, 0.4f, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "sphere.obj");
+    objects[4] = new Cube(10, 0, 5, 1, 1, 0, 5, 1, Quaternion(deg2Rad(0), 0, 1, 0), "Explosif.bmp", "tex", "");
 
 
 	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
@@ -180,9 +180,11 @@ void Update(void)
     theta += 0.0001 * deltaTime;
     for (int i = 0; i < sizeObjects; i++)
     {
-        if (objects[i] != NULL);
-            objects[i]->rotate(Quaternion(deg2Rad(theta / objects[i]->thetha()), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+		if (objects[i] != NULL) {
+			objects[i]->rotate(Quaternion(deg2Rad(theta / objects[i]->thetha()), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
 
+		}
+            
             //objects[i]->rotate(Quaternion(deg2Rad(theta), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
             //objects[i]->rotate(Quaternion(deg2Rad(theta), 1, 0, 1));
     }
@@ -259,7 +261,7 @@ void Render(void)
     for (int i = 0; i < sizeObjects; i++)
     {
         if(objects[i] != NULL)
-            objects[i]->draw(0);
+            objects[i]->draw(1);
     }
 	skybox->draw(0);
 

@@ -1,14 +1,3 @@
-﻿  scene.cpp
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(28,23): warning C4244: 'return' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(109,26): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(180,32): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(183,32): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(201,26): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(201,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(202,25): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(202,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(209,28): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(209,20): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(210,27): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(210,19): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-  QuatermignonGL.vcxproj -> E:\openglproj\Solution-OpenGL3A\Debug\QuatermignonGL.exe
+﻿  BMP.cpp
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\BMP.cpp(57,30): warning C4018: '<' : incompatibilité signed/unsigned
+  QuatermignonGL.vcxproj -> C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\Debug\QuatermignonGL.exe

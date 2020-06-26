@@ -65,7 +65,6 @@ void Cube::solidColoredCube()
 		glBindTexture(GL_TEXTURE_2D, _texture);
 	}
 
-
 	float modelview[16];
 	float proj[16];
 	glGetFloatv(GL_PROJECTION_MATRIX, proj);
@@ -98,12 +97,12 @@ void Cube::solidColoredCube()
 		for (int i = 0; i < out_vertices.size(); i += 3)
 		{
 			glBegin(GL_TRIANGLES);
+			glVertexAttrib2f(texcoord_index, out_uvs[i]._x, out_uvs[i]._y);
 			glVertex3f(out_vertices[i]._x,out_vertices[i]._y, out_vertices[i]._z);
-			glVertexAttrib2f(texcoord_index, out_uvs[i]._x,out_uvs[i]._y);
+			glVertexAttrib2f(texcoord_index, out_uvs[i + 1]._x, out_uvs[i + 1]._y);
 			glVertex3f(out_vertices[i+1]._x, out_vertices[i+1]._y, out_vertices[i+1]._z);
-			glVertexAttrib2f(texcoord_index, out_uvs[i+1]._x, out_uvs[i+1]._y);
+			glVertexAttrib2f(texcoord_index, out_uvs[i + 2]._x, out_uvs[i + 2]._y);
 			glVertex3f(out_vertices[i+2]._x, out_vertices[i+2]._y, out_vertices[i+2]._z);
-			glVertexAttrib2f(texcoord_index, out_uvs[i+2]._x, out_uvs[i+2]._y);
 			glEnd();
 		}
 
@@ -148,11 +147,13 @@ void Cube::draw(int repere)
 	glPushMatrix();
 
 	glTranslatef(_x,_y,_z);
-
+	if (out_vertices.size() != 0) {
+		glScalef(_size, _size, _size);
+	}
 
 	this->solidColoredCube();
 
-	glPopMatrix();
+	
 
 	glDisable(GL_TEXTURE_2D);
 
@@ -176,6 +177,7 @@ void Cube::draw(int repere)
 	glVertex3f(0, 0, 2);
 	glEnd();
 	}
+	glPopMatrix();
 
 	glPopMatrix();
 

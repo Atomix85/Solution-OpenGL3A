@@ -52,14 +52,14 @@ unsigned char* BMP::LoadBitmapFile(const char* filename, INFOHEADER* bitmapInfoH
 		fclose(filePtr);
 		return NULL;
 	}
-	/*
+	
 	//swap the r and b values to get RGB (bitmap is BGR)
-	for (imageIdx = 0; imageIdx < bitmapInfoHeader->imagesize; imageIdx += 3) // fixed semicolon
+	for (imageIdx = 0; imageIdx < bitmapInfoHeader->width * bitmapInfoHeader->height * 3; imageIdx += 3) // fixed semicolon
 	{
 		tempRGB = bitmapImage[imageIdx];
 		bitmapImage[imageIdx] = bitmapImage[imageIdx + 2];
 		bitmapImage[imageIdx + 2] = tempRGB;
-	}*/
+	}
 
 	//close file and return bitmap iamge data
 	fclose(filePtr);
