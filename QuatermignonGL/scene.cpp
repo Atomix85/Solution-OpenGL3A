@@ -15,7 +15,8 @@ const GLint zoom = -8;
 Camera* cam = new Camera();
 int isRunning = 1;
 int oldTimeSinceStart = 0;
-
+const int sizeObjects = 5;
+Cube* objects[sizeObjects];
 
 
 Quaternion rot(deg2Rad(theta), 0.0, 1.0, 0);
@@ -128,15 +129,30 @@ void computePos(int osef)
 void Initialize(void)
 {
     glutSetCursor(GLUT_CURSOR_NONE);
-	distance = 10;
+	distance = 30;
 	yaw = pitch = .0;
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_TEXTURE_2D);
+    //(Cube**)malloc(sizeof(Cube*) * 2);
 
-	cube = new Cube(0, 0, 0, 0.5f, rot, "Explosif.bmp", "tex" );
-	skybox = new Cube(0, 0, 0, 50.0f, rot, "", "skybox");
+    objects[0] = new Cube(0, 0, 0, 1, 0, 1, 1, 2, Quaternion(deg2Rad(0), 1, 0, 1), "Suntex.bmp", "tex", "sphere.obj");
+    /*objects[1] = new Cube(0, 1, 1, 1, 0, 1, 0.7f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[2] = new Cube(1, 0, 1, 0, 0, 1, 0.5f, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[3] = new Cube(3, 3, 3, 1, 1, 1, 0, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
+    objects[4] = new Cube(4, 4, 4, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");
+    objects[5] = new Cube(2, 0, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "");
+    objects[6] = new Cube(0, 2, 2, 1, 0, 1, 1, Quaternion(deg2Rad(0), 1, 0, 1), "Explosif.bmp", "tex", "sphere.obj");*/
+    objects[1] = new Cube(12, 0, 0, 0, 1, 0, -4, 0.5f, Quaternion(deg2Rad(0), 0, 1, 0),  "Explosif.bmp", "tex", "");
+    //objects[2] = new Cube(1, 2, 3, 1, 0, 1, 4, 2, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "planet.obj");
+    objects[2] = new Cube(5, 0, 0, 0, 0, 1, 3, 1, Quaternion(deg2Rad(0), 1, 0, 1), "", "color", "mengerCube.obj");
+    objects[3] = new Cube(7, 0, 1, 0, 1, 0, 3, 0.4f, Quaternion(deg2Rad(0), 1, 0, 1), "moontext.bmp", "tex", "sphere.obj");
+    objects[4] = new Cube(10, 0, 5, 1, 1, 0, 5, 1, Quaternion(deg2Rad(0), 0, 1, 0), "Explosif.bmp", "tex", "");
+
+
+	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
+	skybox = new Cube(0, 0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
 
 void Shutdown(void)
@@ -160,8 +176,19 @@ void Update(void)
     int deltaTime = timeSinceStart - oldTimeSinceStart;
     oldTimeSinceStart = timeSinceStart;
 
+
     theta += 0.0001 * deltaTime;
-    
+    for (int i = 0; i < sizeObjects; i++)
+    {
+		if (objects[i] != NULL) {
+			objects[i]->rotate(Quaternion(deg2Rad(theta / objects[i]->thetha()), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+
+		}
+            
+            //objects[i]->rotate(Quaternion(deg2Rad(theta), objects[i]->rotb(), objects[i]->rotc(), objects[i]->rotd()));
+            //objects[i]->rotate(Quaternion(deg2Rad(theta), 1, 0, 1));
+    }
+    //cube->rotate(Quaternion(deg2Rad(theta), cube->rotation.b, cube->rotation.c, cube->rotation.d));
 
 	if (isRunning == 0)
 		glutLeaveMainLoop();
@@ -223,16 +250,19 @@ void Render(void)
 
 	drawRepere(10);
    // cube->rotation *= Quaternion(deg2Rad(theta), 0.0, 1.0, 0);
-    cube->rotate(Quaternion(deg2Rad(theta), 0.0, 1.0, 0));
 	glTranslatef(0, 1, 0);
 
     // #Fee9fc color is the most beautiful pink in the world.
-    glColor3f(0.99, 0.87, 0.97);
+    //glColor3f(0.99, 0.87, 0.97);
 
     // scaling transfomation 
     glScalef(1.0, 1.0, 1.0);
 
-	cube->draw(1);
+    for (int i = 0; i < sizeObjects; i++)
+    {
+        if(objects[i] != NULL)
+            objects[i]->draw(1);
+    }
 	skybox->draw(0);
 
 

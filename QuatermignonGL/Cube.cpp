@@ -1,7 +1,7 @@
 #include "Cube.h"
 
-Cube::Cube(float x, float y, float z, float size, Quaternion rotation, std::string tex, std::string shader)
-	: _x(x), _y(y), _z(z),_size(size), rotation(rotation)
+Cube::Cube(float x, float y, float z, float rotb, float rotc, float rotd, float theta, float size, Quaternion rotation, std::string tex, std::string shader, std::string obj)
+	: _x(x), _y(y), _z(z), _rotB(rotb), _rotC(rotc), _rotD(rotd), _theta(theta), _size(size), rotation(rotation)
 {
 	_shader = LoadShaders((shader + ".v").c_str(),(shader+".f").c_str());
 	if (tex != "")
@@ -10,6 +10,12 @@ Cube::Cube(float x, float y, float z, float size, Quaternion rotation, std::stri
 		_texture = 0;
 	modelviewMat = (GLfloat*) calloc(16,sizeof(GLfloat));
 	modelviewMat[0] = modelviewMat[5] = modelviewMat[10] = modelviewMat[15] = 1;
+
+	if (obj != "")
+	{
+		loadOBJ(obj.c_str(), out_vertices, out_uvs, out_normals);
+		std::cout << "size : " << out_vertices.size();
+	}
 }
 
 Cube::~Cube()
@@ -59,7 +65,6 @@ void Cube::solidColoredCube()
 		glBindTexture(GL_TEXTURE_2D, _texture);
 	}
 
-
 	float modelview[16];
 	float proj[16];
 	glGetFloatv(GL_PROJECTION_MATRIX, proj);
@@ -68,22 +73,40 @@ void Cube::solidColoredCube()
 	glUniformMatrix4fv(glGetUniformLocation(_shader, "projection"), 1, GL_FALSE, proj);
 	glUniformMatrix4fv(glGetUniformLocation(_shader, "modelview"), 1, GL_FALSE, modelview);
 	int texcoord_index = glGetAttribLocation(_shader, "in_coord");
-
-	for (int x = 0; x != 6; x++)
+	if (out_vertices.size() == 0)
 	{
-		//glColor3f(color[x][0], color[x][1], color[x][2]);
-		glBegin(GL_QUADS);  
-			glVertex3fv(coord[num[x][0]]);
-			glVertexAttrib2f(texcoord_index,0, 0);
-			glVertex3fv(coord[num[x][1]]);
-			glVertexAttrib2f(texcoord_index, 0, 1);
-			glVertex3fv(coord[num[x][2]]);
-			glVertexAttrib2f(texcoord_index, 1, 1);
-			glVertex3fv(coord[num[x][3]]);
-			glVertexAttrib2f(texcoord_index, 1, 0);
-		glEnd();
-	}
+		for (int x = 0; x != 6; x++)
+		{
+			//glColor3f(color[x][0], color[x][1], color[x][2]);
 
+				glBegin(GL_QUADS);
+				glVertex3fv(coord[num[x][0]]);
+				glVertexAttrib2f(texcoord_index, 0, 0);
+				glVertex3fv(coord[num[x][1]]);
+				glVertexAttrib2f(texcoord_index, 0, 1);
+				glVertex3fv(coord[num[x][2]]);
+				glVertexAttrib2f(texcoord_index, 1, 1);
+				glVertex3fv(coord[num[x][3]]);
+				glVertexAttrib2f(texcoord_index, 1, 0);
+				glEnd();
+
+		}
+	}
+	else
+	{
+		for (int i = 0; i < out_vertices.size(); i += 3)
+		{
+			glBegin(GL_TRIANGLES);
+			glVertexAttrib2f(texcoord_index, out_uvs[i]._x, out_uvs[i]._y);
+			glVertex3f(out_vertices[i]._x,out_vertices[i]._y, out_vertices[i]._z);
+			glVertexAttrib2f(texcoord_index, out_uvs[i + 1]._x, out_uvs[i + 1]._y);
+			glVertex3f(out_vertices[i+1]._x, out_vertices[i+1]._y, out_vertices[i+1]._z);
+			glVertexAttrib2f(texcoord_index, out_uvs[i + 2]._x, out_uvs[i + 2]._y);
+			glVertex3f(out_vertices[i+2]._x, out_vertices[i+2]._y, out_vertices[i+2]._z);
+			glEnd();
+		}
+
+	}
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);
 }
@@ -123,12 +146,14 @@ void Cube::draw(int repere)
 
 	glPushMatrix();
 
-	glTranslatef(5,2,0);
-
+	glTranslatef(_x,_y,_z);
+	if (out_vertices.size() != 0) {
+		glScalef(_size, _size, _size);
+	}
 
 	this->solidColoredCube();
 
-	glPopMatrix();
+	
 
 	glDisable(GL_TEXTURE_2D);
 
@@ -152,6 +177,7 @@ void Cube::draw(int repere)
 	glVertex3f(0, 0, 2);
 	glEnd();
 	}
+	glPopMatrix();
 
 	glPopMatrix();
 
@@ -168,4 +194,23 @@ void Cube::rotate( Quaternion q)
 
 
 
+}
+
+
+GLfloat Cube::rotb() const
+{
+	return _rotB;
+}
+
+GLfloat Cube::rotc() const
+{
+	return _rotC;
+}
+GLfloat Cube::rotd() const
+{
+	return _rotD;
+}
+GLfloat Cube::thetha() const
+{
+	return _theta;
 }
