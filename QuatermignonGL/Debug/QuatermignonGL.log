@@ -1,13 +1,13 @@
 ﻿  scene.cpp
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(28,23): warning C4244: 'return' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(109,26): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(193,32): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(216,26): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(216,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(217,25): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(217,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(224,28): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(224,20): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(225,27): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-E:\openglproj\Solution-OpenGL3A\QuatermignonGL\scene.cpp(225,19): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-  QuatermignonGL.vcxproj -> E:\openglproj\Solution-OpenGL3A\Debug\QuatermignonGL.exe
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(28,23): warning C4244: 'return' : conversion de 'double' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(109,26): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(193,32): warning C4244: '+=' : conversion de 'double' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(216,26): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(216,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(217,25): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(217,14): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(224,28): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(224,20): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(225,27): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\QuatermignonGL\scene.cpp(225,19): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+  QuatermignonGL.vcxproj -> C:\Users\brete\OneDrive\Documents\projects\c++\projet opengl\Solution-OpenGL3A\Debug\QuatermignonGL.exe

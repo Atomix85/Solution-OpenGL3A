@@ -155,15 +155,15 @@ void Initialize(void)
     for (int i = 6; i < 15; i++)
     {
         j += 1.0f;
-        objects[i] = new Cube(cos(j)+2.5f,sin(j)+2.5f, 0, 0, 0, 1, 4, 0.1f, Quaternion(deg2Rad(0), 0, 1, 0), "asteroid.bmp", "tex", "sphere.obj");
+        objects[i] = new Cube(cos(j)*3,0, sin(j) * 3, 0, 1, 0.25, 1, 0.1f, Quaternion(deg2Rad(0), 0, 1, 0), "asteroid.bmp", "tex", "sphere.obj");
     }
-
+	/*
     float k = 0.1f;
     for (int i = 15; i < 25; i++)
     {
         k += 1.0f;
         objects[i] = new Cube(cos(k) + 2.5f, 0, sin(k) + 2.5f, 0, 1, 0, 4, 0.1f, Quaternion(deg2Rad(0), 0, 1, 0), "asteroid.bmp", "tex", "sphere.obj");
-    }
+    }*/
 	//cube = new Cube(1, 1, 1, 0.5f, rot, "Explosif.bmp", "tex", "sphere.obj");
 	skybox = new Cube(0, 0, 0, 0, 0, 0, 0, 50.0f, rot, "", "skybox", "");
 }
